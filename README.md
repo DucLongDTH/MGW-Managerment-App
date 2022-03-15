@@ -1,4 +1,4 @@
-# finos_flutter_insurance
+# APP MANAGER SHOP DEMO
 
 A new Flutter project.
 
@@ -17,23 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 - Run `dart fix --apply && flutter format .` to quick fix dart syntax and format all source code.
 
-## Step to Run App
-
-Step 1: Make sure you have the latest version of Flutter installed
-Run `git submodule init && git submodule update && git submodule foreach git checkout master` to init git submodule code
-Open terminal and run command to generate code:
-\
-flutter packages pub get && flutter pub run build_runner build --delete-conflicting-outputs && flutter gen-l10n
-\
-In the seconds time just run:
-flutter packages pub run build_runner build --delete-conflicting-outputs && flutter gen-l10n
-\
-Step 2: Open folder lib/example/main and select the environment to run
-\
-
-### Way 2 execute ./scripts/build-generate.sh in terminal and go to Run and Debug in VS Code to select environment to run
-
-custom entry point in Android studio: <https://stackoverflow.com/questions/55510244/flutter-how-do-i-change-main-dartentry-point-to-some-other-page-in-flutter/55510264>
 
 ## Step to implementation
 
@@ -73,34 +56,6 @@ To materialize the architectural decisions and to make it more useful to our tea
 \- To persist sensitive local data we’ve decided to use the package [**_flutter\_secure\_storage_**](https://pub.dev/packages/flutter_secure_storage) because it is a popular and performative solution when there isn’t the need of storing complex data.
 
 We’ve defined helper classes/types to deal with the Result of actions, the _Result_ type (generic Freezed union type that has two types: a _Success_ and a _Failure_), the _RequestStatus_ type (generic Freezed union type that has four types: _Idle_, _Loading_, _Succeeded_, _Failed_) to help dealing with the visual response of requests, the AppError (abstract class that is implemented in each relevant particular error type), and to help with forms, the _Maybe_ type (generic Freezed union type that has two types: _Nothing_ and _Just_) used in the definition of _FormField_ type (generic Freezed data class containing the name of the field and the Maybe instance representing the actual possible inputted value to the form field).
-
-## How to get ssl certificate pinning
-
-Step 1: echo | openssl s_client -servername ${MY_SERVER} -connect ${MY_SERVER}:443 2>&1 | \
- sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem
-
-for example: openssl s_client -connect virtserver.swaggerhub.com:443 2>&1 | \
- sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem
-
- openssl s_client -showcerts -servername api.uat.finos.asia -connect api.uat.finos.asia:443 </dev/null | openssl x509 | \
- sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem
-
-\ If you only seeing base 64 certificate
-openssl s_client -connect virtserver.swaggerhub.com:443 2>/dev/null | openssl x509
-Another way: openssl s_client -showcerts -servername api.uat.finos.asia -connect api.uat.finos.asia:443 2>/dev/null | openssl x509
-
-\
-Check ssl validate: <https://www.sslshopper.com/ssl-checker.html#hostname=https://str.vov.gov.vn/>
-\
-<https://developer.android.com/training/articles/security-ssl>
-\
-<https://developer.android.com/training/articles/security-config#TrustingAdditionalCas>
-
-\
-Step 2: openssl x509 -noout -fingerprint -sha256 -inform pem -in mycert.pem
-
-One-line: openssl s_client -showcerts -servername api.uat.finos.asia -connect api.uat.finos.asia:443 </dev/null | openssl x509 | \
- sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem && openssl x509 -noout -fingerprint -sha256 -inform pem -in mycert.pem
 
 ## How to build app
 
