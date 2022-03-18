@@ -1,4 +1,4 @@
-# APP MANAGER SHOP DEMO
+# MGW-Managerment-App
 
 A new Flutter project.
 
