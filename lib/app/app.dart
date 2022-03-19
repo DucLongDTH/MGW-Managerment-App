@@ -1,3 +1,4 @@
+import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/l10n/l10n.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
@@ -20,16 +21,17 @@ class MyApp extends StatelessWidget {
       GlobalCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ];
+    ThemeProvider.instance.initAppTheme();
     return ScreenUtilInit(
       builder: (){
         final _appRouter = di.sl.get<AppRouter>();
         // final _model = AppConfigModel.instance;
-        // final _themeData = ThemeProvider.instance.themeData;
+        final _themeData = ThemeProvider.instance.themeData;
         return Builder(builder: (context) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             // title: _model.appName,
-            // theme: _themeData,
+            theme: _themeData,
             supportedLocales: L10n.all,
             localizationsDelegates: _localizationsDelegates,
             routerDelegate: AutoRouterDelegate(_appRouter),

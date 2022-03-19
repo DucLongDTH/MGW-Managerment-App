@@ -17,7 +17,13 @@ samples, guidance on mobile development, and a full API reference.
 
 - Run `dart fix --apply && flutter format .` to quick fix dart syntax and format all source code.
 
-
+Open terminal and run command to generate code:
+\
+flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs && flutter gen-l10n
+\
+In the seconds time just run:
+flutter packages pub run build_runner build --delete-conflicting-outputs && flutter gen-l10n
+\
 ## Step to implementation
 
 This app follow clean architecture
