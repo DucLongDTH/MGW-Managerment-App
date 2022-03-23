@@ -32,6 +32,14 @@ class MyApp extends StatelessWidget {
           final _themeData = ThemeProvider.instance.themeData;
           return Builder(builder: (context) {
             return MaterialApp.router(
+              builder: (context, child){
+                ScreenUtil.setContext(context);
+                return MediaQuery(
+                  //Setting font does not change with system font size
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: child ?? const SizedBox(),
+                );
+              },
               debugShowCheckedModeBanner: false,
               title: appName,
               theme: _themeData,

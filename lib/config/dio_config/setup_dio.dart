@@ -12,6 +12,17 @@ Dio createCoreDio(String _baseUrl) {
   dio.options.contentType = 'application/json';
   dio.options.headers.putIfAbsent('lang', () => 'vi');
   dio.options.headers.putIfAbsent('Accept', () => 'application/json');
+
+  dio.interceptors.add(InterceptorsWrapper(
+    onRequest: (options, handler){
+      //TODO add auth token
+      options.headers.putIfAbsent('authorization', () => '');
+      return handler.next(options);
+    },
+    onError: (dioError, handler){
+      //TODO handler error
+    }
+  ));
   if (kDebugMode) {
     dio.interceptors.add(LogInterceptor(logPrint: (Object logM) {
       log(logM.toString());

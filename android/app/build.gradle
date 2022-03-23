@@ -44,8 +44,9 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.app_demo_flutter"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 32
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -55,6 +56,8 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            shrinkResources false
+            minifyEnabled false
         }
     }
 }
@@ -65,4 +68,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
