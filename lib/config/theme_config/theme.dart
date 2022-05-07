@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ThemeProvider {
-  static const defaultFontFamily = FontFamily.montserrat;
+  static const defaultFontFamily = FontFamily.josefin;
 
   ThemeProvider._privateConstructor();
 

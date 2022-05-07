@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
@@ -8,31 +9,33 @@ Dio createCoreDio(String _baseUrl) {
   final dio = Dio();
   dio.options.baseUrl = _baseUrl;
   dio.options.connectTimeout = 30000; //30s
-  dio.options.receiveTimeout = 30000;
+  dio.options.receiveTimeout = 3000;
   dio.options.contentType = 'application/json';
   dio.options.headers.putIfAbsent('lang', () => 'vi');
   dio.options.headers.putIfAbsent('Accept', () => 'application/json');
-
-  dio.interceptors.add(InterceptorsWrapper(
-    onRequest: (options, handler){
-      //TODO add auth token
-      options.headers.putIfAbsent('authorization', () => '');
-      return handler.next(options);
-    },
-    onError: (dioError, handler){
-      //TODO handler error
-    }
-  ));
+  dio.interceptors.add(DioErrorInterceptors());
+  dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
+    //TODO add auth token
+    options.headers.putIfAbsent('authorization', () => '');
+    return handler.next(options);
+  }, onError: (dioError, handler) {
+    //TODO handler error
+    handler.next(dioError);
+  }));
   if (kDebugMode) {
     dio.interceptors.add(LogInterceptor(logPrint: (Object logM) {
       log(logM.toString());
     }));
     dio.interceptors.add(Dio2CurlInterceptor());
   }
+  // final cacheStore = MemCacheStore(maxSize: 10485760, maxEntrySize: 1048576);
+  // dio.interceptors.add(
+  //   DioCacheInterceptor(
+  //       options: CacheOptions(store: cacheStore, policy: CachePolicy.noCache)),
+  // );
+
   return dio;
 }
-
-
 
 class Dio2CurlInterceptor extends InterceptorsWrapper {
   @override
@@ -101,20 +104,20 @@ extension Curl on RequestOptions {
 
     String header = headers
         .map((key, value) {
-      if (key == 'content-type' &&
-          value.toString().contains('multipart/form-data')) {
-        value = 'multipart/form-data;';
-      }
-      return MapEntry(key, "-H '$key: $value'");
-    })
+          if (key == 'content-type' &&
+              value.toString().contains('multipart/form-data')) {
+            value = 'multipart/form-data;';
+          }
+          return MapEntry(key, "-H '$key: $value'");
+        })
         .values
         .join(' ');
     String url = '$baseUrl$path';
     if (queryParameters.isNotEmpty) {
       String query = queryParameters
           .map((key, value) {
-        return MapEntry(key, '$key=$value');
-      })
+            return MapEntry(key, '$key=$value');
+          })
           .values
           .join('&');
 

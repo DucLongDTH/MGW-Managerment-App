@@ -59,7 +59,7 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget{
         ThemeProvider.instance.textStyleBold18.copyWith(color: textColor),
       ),
       backgroundColor: backgroundColor ?? white,
-      centerTitle: true,
+      centerTitle: false,
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc/src/bloc_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,6 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,// navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
+    ));
     const _localizationsDelegates = [
       AppLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,

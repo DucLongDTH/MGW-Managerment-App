@@ -8,8 +8,8 @@ import 'package:app_demo_flutter/di/demo_di.dart' as demo;
 final sl = GetIt.instance;
 
 Future<void> initDI() async {
+  demo.registerDI();
   sl.registerSingleton(AppRouter());
   sl.registerSingleton<Dio>(dio.createCoreDio(baseUrl));
   sl.registerSingleton(baseUrl, instanceName: baseUrlName);
-  demo.registerDI();
 }
