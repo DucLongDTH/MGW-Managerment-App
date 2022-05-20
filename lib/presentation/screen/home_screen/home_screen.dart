@@ -1,6 +1,7 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/presentation/screen/home_screen/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,10 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: listScreenWidget.elementAt(_currentPage),
       )),
       bottomNavigationBar: BottomNavigationBar(
-
           currentIndex: _currentPage,
           selectedItemColor: darkBlue,
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               _currentPage = index;
             });
@@ -39,18 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ThemeProvider.instance.textStyleMed14.copyWith(color: grey),
           items: [
             BottomNavigationBarItem(
-                icon: _buildIcon(asset:Assets.icons.icHomeOutline,color: grey),
+                icon:
+                    _buildIcon(asset: Assets.icons.icHomeOutline, color: grey),
                 label: 'Home',
-                activeIcon: _buildIcon(asset:Assets.icons.icHome,color: darkBlue)),
+                activeIcon:
+                    _buildIcon(asset: Assets.icons.icHome, color: darkBlue)),
             BottomNavigationBarItem(
-                icon: _buildIcon(asset:Assets.icons.icInvoiceOutline,color: grey),
+                icon: _buildIcon(
+                    asset: Assets.icons.icInvoiceOutline, color: grey),
                 label: 'Bill',
-                activeIcon: _buildIcon(asset:Assets.icons.icInvoice,color: darkBlue)),
+                activeIcon:
+                    _buildIcon(asset: Assets.icons.icInvoice, color: darkBlue)),
             BottomNavigationBarItem(
-                icon: _buildIcon(asset:Assets.icons.icProductOutline,color: grey),
+                icon: _buildIcon(
+                    asset: Assets.icons.icProductOutline, color: grey),
                 label: 'Product',
-                activeIcon: _buildIcon(asset: Assets.icons.icProduct, color: darkBlue)
-                ),
+                activeIcon:
+                    _buildIcon(asset: Assets.icons.icProduct, color: darkBlue)),
           ]),
     );
   }
@@ -60,17 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
       'Index 1: Home',
       style: ThemeProvider.instance.textStyleBold24,
     ),
-     Text(
+    Text(
       'Index 2: Bill',
       style: ThemeProvider.instance.textStyleBold24,
     ),
-     Text(
-      'Index 3: Product',
-      style: ThemeProvider.instance.textStyleBold24,
-    ),
+    const ProductPageWidget()
   ];
 
-  _buildIcon({ required asset,required color}) {
+  _buildIcon({required asset, required color}) {
     return SvgPicture.asset(asset, color: color).padding(bottom: 4.h);
   }
 }

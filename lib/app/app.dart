@@ -3,6 +3,7 @@ import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/l10n/l10n.dart';
 import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.black,// navigation bar color
-      statusBarColor: Colors.transparent, // status bar color
-    ));
+        systemNavigationBarColor: Colors.black, // navigation bar color
+        statusBarColor: Colors.transparent,
+        systemStatusBarContrastEnforced: true,
+        systemNavigationBarContrastEnforced: true // status bar color
+        ));
     const _localizationsDelegates = [
       AppLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
@@ -32,12 +35,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: _appProviders,
       child: ScreenUtilInit(
-        builder: (){
+        builder: () {
           final _appRouter = di.sl.get<AppRouter>();
           final _themeData = ThemeProvider.instance.themeData;
           return Builder(builder: (context) {
             return MaterialApp.router(
-              builder: (context, child){
+              builder: (context, child) {
                 ScreenUtil.setContext(context);
                 return MediaQuery(
                   //Setting font does not change with system font size
@@ -65,11 +68,13 @@ class MyApp extends StatelessWidget {
       BlocProvider(
         create: (_) => di.sl<DemoCubit>(),
       ),
+      BlocProvider(
+        create: (_) => di.sl<GetProductCubit>(),
+      ),
     ];
   }
 
   List<BlocListener> get _blocListeners {
-    return [
-    ];
+    return [];
   }
 }

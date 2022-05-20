@@ -23,6 +23,7 @@ class MgwOSTextField extends StatelessWidget {
   final bool obscureText;
   final bool readOnly;
   final bool enabled;
+  final double? heightTextField;
 
   MgwOSTextField(
       {Key? key,
@@ -43,13 +44,13 @@ class MgwOSTextField extends StatelessWidget {
       this.borderDecoration,
       this.inputDecoration,
       this.maxLines = 1,
+      this.heightTextField,
       this.inputFormatters})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
           color: greyBackground, borderRadius: BorderRadius.circular(8.r)),
@@ -79,7 +80,7 @@ class MgwOSTextField extends StatelessWidget {
 
   Widget _buildTextForm() {
     return Container(
-      height: 60.h,
+      height: heightTextField ?? 60.h,
       padding: EdgeInsets.symmetric(vertical: 13.h),
       child: TextFormField(
         key: inputFieldKey,
@@ -93,7 +94,8 @@ class MgwOSTextField extends StatelessWidget {
             hintText: title,
             border: InputBorder.none,
             contentPadding: EdgeInsets.only(bottom: 12.h),
-            hintStyle: ThemeProvider.instance.textStyleBold14.copyWith(color: greyIcon)),
+            hintStyle: ThemeProvider.instance.textStyleBold14
+                .copyWith(color: greyIcon)),
         style: ThemeProvider.instance.textStyleBold14
             .copyWith(color: Colors.black),
         keyboardType: keyboardType,

@@ -2,8 +2,7 @@ import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:flutter/material.dart';
 
-class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget{
-
+class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final Color? iconColor;
@@ -18,17 +17,17 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   const MgwOSAppBar(
       {Key? key,
-        this.backgroundColor,
-        this.textColor = Colors.white,
-        this.icon,
-        this.title = '',
-        this.height = kToolbarHeight,
-        this.onClickIconLeft,
-        this.iconColor = Colors.black,
-        this.onClickIconRight,
-        this.widgetRight,
-        this.widgetLeft,
-        this.elevation})
+      this.backgroundColor,
+      this.textColor = Colors.white,
+      this.icon,
+      this.title = '',
+      this.height = kToolbarHeight,
+      this.onClickIconLeft,
+      this.iconColor = Colors.black,
+      this.onClickIconRight,
+      this.widgetRight,
+      this.widgetLeft,
+      this.elevation})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -43,20 +42,22 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget{
       actions: [
         (widgetRight != null)
             ? GestureDetector(
-          onTap: onClickIconRight,
-          child: widgetRight,
-        )
+                onTap: onClickIconRight,
+                child: widgetRight,
+              )
             : const SizedBox()
       ],
-      leading: InkWell(
-        key: const Key('btnBack'),
-        onTap: onClickIconLeft,
-        child: widgetLeft,
-      ),
+      leading: widgetLeft != null
+          ? InkWell(
+              key: const Key('btnBack'),
+              onTap: onClickIconLeft,
+              child: widgetLeft,
+            )
+          : null,
       title: Text(
         title ?? '',
         style:
-        ThemeProvider.instance.textStyleBold18.copyWith(color: textColor),
+            ThemeProvider.instance.textStyleBold18.copyWith(color: textColor),
       ),
       backgroundColor: backgroundColor ?? white,
       centerTitle: false,
