@@ -1,7 +1,7 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
-import 'package:app_demo_flutter/presentation/screen/home_screen/product_widget.dart';
+import 'package:app_demo_flutter/presentation/screen/home_screen/product/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

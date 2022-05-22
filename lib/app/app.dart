@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.black, // navigation bar color
         statusBarColor: Colors.transparent,
         systemStatusBarContrastEnforced: true,
@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: _appProviders,
       child: ScreenUtilInit(
-        builder: () {
+        builder: (context,widget) {
           final _appRouter = di.sl.get<AppRouter>();
           final _themeData = ThemeProvider.instance.themeData;
           return Builder(builder: (context) {
             return MaterialApp.router(
               builder: (context, child) {
-                ScreenUtil.setContext(context);
+                ScreenUtil.init(context);
                 return MediaQuery(
                   //Setting font does not change with system font size
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

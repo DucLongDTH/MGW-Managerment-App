@@ -9,13 +9,13 @@ class GetProductCubit extends Cubit<GetProductState> {
   GetProductCubit({required this.demoUseCase})
       : super(const GetProductState.initial());
 
-  Future<void> getData() async {
+  Future<void> getData(int indexPage) async {
     emit(const GetProductState.loading());
     Future.delayed(const Duration(milliseconds: 2000), () async {
       var params = NoParams();
       final response = await demoUseCase.call(params);
       emit(response.fold((fail) => GetProductState.error(fail), (success) {
-        return const GetProductState.success([]);
+        return GetProductState.success((indexPage*10));
       }));
     });
   }
