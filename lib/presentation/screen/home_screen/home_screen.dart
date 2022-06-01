@@ -1,6 +1,7 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/dashboard_widget.dart';
 import 'package:app_demo_flutter/presentation/screen/home_screen/product/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,10 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> listScreenWidget = [
-    Text(
-      'Index 1: Home',
-      style: ThemeProvider.instance.textStyleBold24,
-    ),
+    const DashBoardWidget(),
     Text(
       'Index 2: Bill',
       style: ThemeProvider.instance.textStyleBold24,
