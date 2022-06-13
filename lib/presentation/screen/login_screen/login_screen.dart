@@ -1,8 +1,8 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
-import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
-import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_state.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildButtonLogin() {
-    return BlocListener<DemoCubit, DemoState>(
+    return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         _isLoading.value = false;
         state.maybeWhen(
@@ -185,8 +185,9 @@ class _LoginScreenState extends State<LoginScreen> {
         colorBackground: darkBlue,
         onPressed: () {
           // TODO CALL API LOGIN
-          // BlocProvider.of<DemoCubit>(context).getData();
-          AutoRouter.of(context).replaceNamed(RoutePaths.home);
+          BlocProvider.of<LoginCubit>(context).login(
+              _usernameController.text.trim(), _passwordController.text.trim());
+          // AutoRouter.of(context).replaceNamed(RoutePaths.home);
         },
         cornerRadius: 12.r,
         text: 'Log in',

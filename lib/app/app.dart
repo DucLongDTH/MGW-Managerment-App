@@ -4,7 +4,7 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/di/app_di.dart' as di;
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/l10n/l10n.dart';
-import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
   List<BlocProviderSingleChildWidget> get _appProviders {
     return [
       BlocProvider(
-        create: (_) => di.sl<DemoCubit>(),
+        create: (_) => di.sl<LoginCubit>(),
       ),
       BlocProvider(
         create: (_) => di.sl<GetProductCubit>(),

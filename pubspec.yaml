@@ -55,7 +55,7 @@ dependencies:
   photo_view: ^0.13.0
   styled_widget: ^0.4.0+3
   flutter_markdown: ^0.6.9
-  device_info_plus: ^3.2.1
+  device_info_plus: ^3.2.4
   cached_network_image: ^3.2.0
   # Dependency Injection
   get_it: ^7.2.0
@@ -75,6 +75,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   syncfusion_flutter_charts: ^20.1.56
   fl_chart: ^0.50.6
+  universal_platform: ^1.0.0+1
   
 dev_dependencies:
   flutter_test:

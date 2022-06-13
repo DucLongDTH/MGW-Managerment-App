@@ -16,10 +16,12 @@ Dio createCoreDio(String _baseUrl) {
   dio.interceptors.add(DioErrorInterceptors());
   dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
     //TODO add auth token
+
     options.headers.putIfAbsent('authorization', () => '');
     return handler.next(options);
   }, onError: (dioError, handler) {
     //TODO handler error
+    
     handler.next(dioError);
   }));
   if (kDebugMode) {

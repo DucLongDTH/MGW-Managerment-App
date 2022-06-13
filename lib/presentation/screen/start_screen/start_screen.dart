@@ -2,8 +2,8 @@ import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/dialog_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
-import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
-import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_state.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:app_demo_flutter/widget/mgw_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
@@ -23,13 +23,13 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  late DemoCubit _cubit;
+  late LoginCubit _cubit;
   late String title;
   final ValueNotifier<bool> _isLoading = ValueNotifier(false);
 
   @override
   void initState() {
-    _cubit = BlocProvider.of<DemoCubit>(context);
+    _cubit = BlocProvider.of<LoginCubit>(context);
     title = 'GET DATA FROM API DEMO';
     super.initState();
   }
@@ -121,7 +121,7 @@ class _StartScreenState extends State<StartScreen> {
                   SizedBox(
                     height: 150.h,
                   ),
-                  BlocListener<DemoCubit, DemoState>(
+                  BlocListener<LoginCubit, LoginState>(
                     listener: (context, state) {
                       _isLoading.value = false;
                       state.maybeWhen(
@@ -145,7 +145,7 @@ class _StartScreenState extends State<StartScreen> {
                       width: double.infinity,
                       colorBackground: darkBlue,
                       onPressed: () {
-                        _cubit.getData();
+                        // _cubit.login();
                       },
                       text: 'DEMO GET DATA',
                       titleStyle: ThemeProvider.instance.textStyleBold18
