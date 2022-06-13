@@ -1,5 +1,7 @@
 import 'package:app_demo_flutter/config/app_config/app_config.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
+import 'package:app_demo_flutter/constant/colors_utils.dart';
+import 'package:app_demo_flutter/di/app_di.dart' as di;
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/l10n/l10n.dart';
 import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
@@ -12,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc/src/bloc_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:app_demo_flutter/di/app_di.dart' as di;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -35,11 +36,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: _appProviders,
       child: ScreenUtilInit(
-        builder: (context,widget) {
+        builder: (context, widget) {
           final _appRouter = di.sl.get<AppRouter>();
           final _themeData = ThemeProvider.instance.themeData;
           return Builder(builder: (context) {
             return MaterialApp.router(
+              color: darkBlue,
               builder: (context, child) {
                 ScreenUtil.init(context);
                 return MediaQuery(

@@ -14,7 +14,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<Either<Exception, dynamic>> getProduct() async {
     try {
-      return Right([]);
+      return const Right([]);
     } on Exception catch (error) {
       return Left(error);
     }

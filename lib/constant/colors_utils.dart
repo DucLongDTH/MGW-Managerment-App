@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 const Color white = Colors.white;
 const Color black = Colors.black;
@@ -86,4 +85,3 @@ Map<int, Color> getSwatch(Color color) {
     900: (hslColor.withLightness(lightness - (highStep * 4))).toColor(),
   };
 }
-

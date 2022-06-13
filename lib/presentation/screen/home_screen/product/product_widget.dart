@@ -93,6 +93,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
             ),
             onChange: (value) {},
             onSaved: (value) {},
+            contentPadding: 10.r,
           ),
           SizedBox(
             height: 15.h,

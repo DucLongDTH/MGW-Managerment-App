@@ -5,8 +5,8 @@ import 'package:app_demo_flutter/presentation/screen/start_screen/start_screen.d
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
 
-class RoutePaths{
-  static const splash ='/Splash';
+class RoutePaths {
+  static const splash = '/Splash';
   static const start = '/Start';
   static const login = '/loginScreen';
   static const home = '/homeScreen';

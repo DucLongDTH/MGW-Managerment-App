@@ -1,4 +1,3 @@
-
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
@@ -36,14 +35,14 @@ class ThemeProvider {
   late TextStyle _textStyleMed12;
   late TextStyle _textStyleMed10;
 
-  void initAppTheme(){
+  void initAppTheme() {
     _themeData = _buildAppTheme();
   }
 
   ThemeData _buildAppTheme() {
     _portraitModeOnly();
     final baseTheme = ThemeData.light();
-    final baseTextStyle = TextStyle(
+    const baseTextStyle = TextStyle(
         fontFamily: defaultFontFamily,
         color: Colors.black,
         fontWeight: FontWeight.w500);
@@ -99,7 +98,7 @@ class ThemeProvider {
 
   void _initTextStyle(TextStyle baseTextStyle) {
     final baseTitleTextStyle =
-    baseTextStyle.copyWith(fontWeight: FontWeight.w700);
+        baseTextStyle.copyWith(fontWeight: FontWeight.w700);
     _textStyleBold32 = baseTitleTextStyle.copyWith(fontSize: 32);
     _textStyleBold26 = baseTitleTextStyle.copyWith(fontSize: 26);
     _textStyleBold24 = baseTitleTextStyle.copyWith(fontSize: 24);

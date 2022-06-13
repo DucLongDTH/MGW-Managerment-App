@@ -14,22 +14,19 @@ void registerDI() {
       baseUrl: sl.get<String>(instanceName: baseUrlName)));
   // // Data sources
   sl.registerLazySingleton<DemoRemoteDataSource>(
-        () => DemoRemoteDataSourceImpl(
+    () => DemoRemoteDataSourceImpl(
       service: sl.get(),
     ),
   );
   // // Repositories
   sl.registerLazySingleton<DemoRepository>(
-        () => DemoRepositoryImpl(
+    () => DemoRepositoryImpl(
       remoteSource: sl.get(),
     ),
   );
   // // UseCases
-  sl.registerLazySingleton(
-          () => DemoUseCase(demoRepository: sl.get()));
+  sl.registerLazySingleton(() => DemoUseCase(demoRepository: sl.get()));
 
   // // bloc
-  sl.registerFactory(() => DemoCubit(
-      demoUseCase: sl.get())
-  );
+  sl.registerFactory(() => DemoCubit(demoUseCase: sl.get()));
 }

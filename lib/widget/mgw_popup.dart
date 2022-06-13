@@ -12,16 +12,15 @@ class MgwOSPopup extends StatelessWidget {
   final TextStyle? titleStyle;
   final TextStyle? subTitleStyle;
 
-  const MgwOSPopup(
-      {Key? key,
-        this.imagePath,
-        required this.title,
-        this.subTitle,
-        required this.buttons,
-        this.titleStyle,
-        this.subTitleStyle,
-      })
-      : super(key: key);
+  const MgwOSPopup({
+    Key? key,
+    this.imagePath,
+    required this.title,
+    this.subTitle,
+    required this.buttons,
+    this.titleStyle,
+    this.subTitleStyle,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +34,16 @@ class MgwOSPopup extends StatelessWidget {
           children: [
             imagePath != null
                 ? SvgPicture.asset(
-              imagePath!,
-              width: 82.w,
-              height: 82.h,
-            )
+                    imagePath!,
+                    width: 82.w,
+                    height: 82.h,
+                  )
                 : const SizedBox(),
             SizedBox(height: 20.h),
             Text(title,
                 style: titleStyle ??
-                    ThemeProvider.instance.textStyleBold18.copyWith(color: darkBlue),
+                    ThemeProvider.instance.textStyleBold18
+                        .copyWith(color: darkBlue),
                 textAlign: TextAlign.center),
             SizedBox(height: 10.h),
             Text(
@@ -56,9 +56,9 @@ class MgwOSPopup extends StatelessWidget {
             Column(
               children: buttons
                   .map((e) => Padding(
-                padding: EdgeInsets.all(8.w),
-                child: e,
-              ))
+                        padding: EdgeInsets.all(8.w),
+                        child: e,
+                      ))
                   .toList(),
             )
           ],

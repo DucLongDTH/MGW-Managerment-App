@@ -6,15 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DemoCubit extends Cubit<DemoState> {
   final DemoUseCase demoUseCase;
 
-  DemoCubit({required this.demoUseCase})
-      : super(const DemoState.initial());
+  DemoCubit({required this.demoUseCase}) : super(const DemoState.initial());
 
   Future<void> getData() async {
     emit(const DemoState.loading());
     var params = NoParams();
     final response = await demoUseCase.call(params);
     emit(response.fold((fail) => DemoState.error(fail), (success) {
-      return DemoState.success();
+      return const DemoState.success();
     }));
   }
 }

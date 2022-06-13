@@ -48,13 +48,13 @@ class _StartScreenState extends State<StartScreen> {
               widgetLeft: Row(
                 children: [
                   SizedBox(width: 16.w),
-                  Image(
-                    image: Assets.images.logo,
+                  Image.asset(
+                    Assets.images.logo.path,
                     width: 25.w,
                     height: 30.h,
                     colorBlendMode: BlendMode.clear,
                     errorBuilder: (_, __, ___) {
-                      return SizedBox.shrink();
+                      return const SizedBox.shrink();
                     },
                   )
                 ],

@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _nextToMainOrLogin() async {
-    await Future.delayed(Duration(seconds: 2), () {
+    await Future.delayed(const Duration(seconds: 2), () {
       // TODO check login or main screen
       AutoRouter.of(context).replaceNamed(RoutePaths.login);
     });

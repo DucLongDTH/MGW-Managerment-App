@@ -12,14 +12,14 @@ class L10n {
 
   static String getFlag(String code) {
     switch (code) {
-    // case 'ar':
-    //   return '🇦🇪';
-    // case 'hi':
-    //   return '🇮🇳';
-    // case 'es':
-    //   return '🇪🇸';
-    // case 'de':
-    //   return '🇩🇪';
+      // case 'ar':
+      //   return '🇦🇪';
+      // case 'hi':
+      //   return '🇮🇳';
+      // case 'es':
+      //   return '🇪🇸';
+      // case 'de':
+      //   return '🇩🇪';
       case 'vi':
         return '🇻🇳';
       case 'en':

@@ -3,15 +3,15 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/demo_cubit/demo_state.dart';
+import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:app_demo_flutter/router/router.dart';
-import 'package:auto_route/auto_route.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(12.r)),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: greyShadow,
             spreadRadius: 4,

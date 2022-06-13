@@ -15,7 +15,7 @@ class GetProductCubit extends Cubit<GetProductState> {
       var params = NoParams();
       final response = await demoUseCase.call(params);
       emit(response.fold((fail) => GetProductState.error(fail), (success) {
-        return GetProductState.success((indexPage*10));
+        return GetProductState.success((indexPage * 10));
       }));
     });
   }

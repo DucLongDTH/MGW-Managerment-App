@@ -14,8 +14,7 @@ class DemoRemoteDataSourceImpl implements DemoRemoteDataSource {
   @override
   Future<Either<Exception, dynamic>> getCustomer() async {
     try {
-      final response =
-      await service.getCustomer();
+      final response = await service.getCustomer();
       return Right(response.data);
     } on Exception catch (error) {
       return Left(error);

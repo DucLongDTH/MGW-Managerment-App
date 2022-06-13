@@ -1,4 +1,3 @@
-
 import 'package:app_demo_flutter/config/dio_config/connecttivity_util.dart';
 import 'package:dio/dio.dart';
 
@@ -47,10 +46,10 @@ class DioErrorInterceptors extends Interceptor {
 class BadRequestException extends DioError {
   BadRequestException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
 
   @override
@@ -62,10 +61,10 @@ class BadRequestException extends DioError {
 class ServerUnderMaintainErrorException extends DioError {
   ServerUnderMaintainErrorException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {
@@ -76,10 +75,10 @@ class ServerUnderMaintainErrorException extends DioError {
 class InternalServerErrorException extends DioError {
   InternalServerErrorException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {
@@ -90,10 +89,10 @@ class InternalServerErrorException extends DioError {
 class ConflictException extends DioError {
   ConflictException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {
@@ -104,10 +103,10 @@ class ConflictException extends DioError {
 class UnauthorizedException extends DioError {
   UnauthorizedException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {
@@ -118,10 +117,10 @@ class UnauthorizedException extends DioError {
 class NotFoundException extends DioError {
   NotFoundException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {
@@ -132,10 +131,10 @@ class NotFoundException extends DioError {
 class OtherException extends DioError {
   OtherException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
 
   @override
@@ -147,10 +146,10 @@ class OtherException extends DioError {
 class DeadlineExceededException extends DioError {
   DeadlineExceededException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
 
   @override
@@ -162,10 +161,10 @@ class DeadlineExceededException extends DioError {
 class NoInternetConnectionException extends DioError {
   NoInternetConnectionException(this.dioError)
       : super(
-      requestOptions: dioError.requestOptions,
-      type: dioError.type,
-      response: dioError.response,
-      error: dioError.error);
+            requestOptions: dioError.requestOptions,
+            type: dioError.type,
+            response: dioError.response,
+            error: dioError.error);
   final DioError dioError;
   @override
   String toString() {

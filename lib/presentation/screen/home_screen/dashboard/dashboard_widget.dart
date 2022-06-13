@@ -1,13 +1,9 @@
 import 'package:app_demo_flutter/constant/colors_utils.dart';
-import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/bar_chart_sample.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DashBoardWidget extends StatefulWidget {
   const DashBoardWidget({Key? key}) : super(key: key);
@@ -35,7 +31,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           // Expanded(
           //   flex: 1,
           //   child: SfCartesianChart(

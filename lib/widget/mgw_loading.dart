@@ -9,9 +9,9 @@ class MgwOSLoading extends StatefulWidget {
 
   const MgwOSLoading(
       {Key? key,
-        required this.mainWidget,
-        required this.isShowLoading,
-        this.size})
+      required this.mainWidget,
+      required this.isShowLoading,
+      this.size})
       : super(key: key);
 
   @override
@@ -27,10 +27,10 @@ class _MgwOSLoadingState extends State<MgwOSLoading> {
       widget.mainWidget,
       widget.isShowLoading
           ? Center(
-        child: MgwOSLoadingIndicator(
-          size: widget.size,
-        ),
-      ).backgroundColor(Colors.transparent)
+              child: MgwOSLoadingIndicator(
+                size: widget.size,
+              ),
+            ).backgroundColor(Colors.transparent)
           : const SizedBox()
     ]);
   }

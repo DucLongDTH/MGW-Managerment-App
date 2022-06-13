@@ -5,8 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MgwOSLoadingIndicator extends StatelessWidget {
   final Size? size;
 
-  const MgwOSLoadingIndicator({Key? key, this.size})
-      : super(key: key);
+  const MgwOSLoadingIndicator({Key? key, this.size}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var filePath = "assets/loading.json";

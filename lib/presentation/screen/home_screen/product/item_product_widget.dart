@@ -14,7 +14,7 @@ class ItemProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24.w,vertical: 15.h),
+      margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 15.h),
       padding: EdgeInsets.symmetric(horizontal: 8.w),
       decoration: BoxDecoration(
         boxShadow: [
@@ -61,9 +61,9 @@ class ItemProductWidget extends StatelessWidget {
                 style: ThemeProvider.instance.textStyleMed14,
               ),
               SizedBox(height: 5.h),
-              Text('Number In Stock'),
+              const Text('Number In Stock'),
               SizedBox(height: 5.h),
-              Text('Rating'),
+              const Text('Rating'),
               SizedBox(
                 height: 15.h,
               ),

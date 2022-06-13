@@ -24,8 +24,9 @@ class MgwOSTextField extends StatelessWidget {
   final bool readOnly;
   final bool enabled;
   final double? heightTextField;
+  final double? contentPadding;
 
-  MgwOSTextField(
+  const MgwOSTextField(
       {Key? key,
       this.inputFieldKey,
       required this.title,
@@ -45,7 +46,8 @@ class MgwOSTextField extends StatelessWidget {
       this.inputDecoration,
       this.maxLines = 1,
       this.heightTextField,
-      this.inputFormatters})
+      this.inputFormatters,
+      this.contentPadding})
       : super(key: key);
 
   @override
@@ -93,7 +95,7 @@ class MgwOSTextField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: title,
             border: InputBorder.none,
-            contentPadding: EdgeInsets.only(bottom: 12.h),
+            contentPadding: EdgeInsets.only(bottom: contentPadding ?? 0.h),
             hintStyle: ThemeProvider.instance.textStyleBold14
                 .copyWith(color: greyIcon)),
         style: ThemeProvider.instance.textStyleBold14

@@ -9,7 +9,6 @@ part 'demo_service.g.dart';
 abstract class DemoService {
   factory DemoService(Dio dio, {String baseUrl}) = _DemoService;
 
-  @GET(
-      '/api/v2/customer')
+  @GET('/api/v2/customer')
   Future<HttpResponse<dynamic>> getCustomer();
 }

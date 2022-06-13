@@ -17,17 +17,17 @@ class MgwOSButton extends StatelessWidget {
 
   const MgwOSButton(
       {Key? key,
-        required this.text,
-        this.iconPath = "",
-        required this.colorBackground,
-        required this.onPressed,
-        this.colorBorder = Colors.transparent,
-        this.width,
-        this.height,
-        this.cornerRadius,
-        this.colorIcons = Colors.white,
-        this.packageName,
-        this.titleStyle})
+      required this.text,
+      this.iconPath = "",
+      required this.colorBackground,
+      required this.onPressed,
+      this.colorBorder = Colors.transparent,
+      this.width,
+      this.height,
+      this.cornerRadius,
+      this.colorIcons = Colors.white,
+      this.packageName,
+      this.titleStyle})
       : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class MgwOSButton extends StatelessWidget {
             Text(
               text,
               style:
-              titleStyle ?? TextStyle(fontSize: 16.sp, color: Colors.white),
+                  titleStyle ?? TextStyle(fontSize: 16.sp, color: Colors.white),
             ),
           ],
         ));
@@ -57,7 +57,7 @@ class MgwOSButton extends StatelessWidget {
         enableFeedback: colorBackground == Colors.transparent ? false : null,
         primary: colorBackground,
         shadowColor:
-        colorBackground == Colors.transparent ? Colors.transparent : null,
+            colorBackground == Colors.transparent ? Colors.transparent : null,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1.0,
@@ -71,10 +71,10 @@ class MgwOSButton extends StatelessWidget {
   Widget _buildIconButton() {
     return (iconPath.isNotEmpty)
         ? SvgPicture.asset(
-      iconPath,
-      package: packageName,
-      color: colorIcons,
-    )
+            iconPath,
+            package: packageName,
+            color: colorIcons,
+          )
         : const SizedBox();
   }
 }
