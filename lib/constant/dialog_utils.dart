@@ -6,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 showMgwOSDialog(BuildContext context, Key? key,
     Widget Function(BuildContext _dialogContext) child) {
   return showDialog(
-      barrierDismissible: false,
+      barrierDismissible: true,
       context: context,
       builder: (dialogContext) => WillPopScope(
-            onWillPop: () async => false,
+            onWillPop: () async => true,
             child: Dialog(
               key: key,
               shape: RoundedRectangleBorder(

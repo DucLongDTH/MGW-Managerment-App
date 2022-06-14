@@ -1,9 +1,13 @@
+import 'package:app_demo_flutter/config/core/shared_preferences.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
+import 'package:app_demo_flutter/constant/key_utils.dart';
 import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/bar_chart_sample.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
+import 'package:app_demo_flutter/widget/mgw_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:app_demo_flutter/di/app_di.dart' as di;
 
 class DashBoardWidget extends StatefulWidget {
   const DashBoardWidget({Key? key}) : super(key: key);
@@ -31,7 +35,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           // Expanded(
           //   flex: 1,
           //   child: SfCartesianChart(
@@ -41,7 +45,18 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
           //     plotAreaBorderWidth: 8,
           //   ),
           // ),
-          Expanded(flex: 1, child: BarChartSample1())
+          const Expanded(flex: 1, child: BarChartSample1()),
+          Expanded(
+              flex: 1,
+              child: MgwOSButton(
+                  text: 'GET TOKEN',
+                  colorBackground: red,
+                  onPressed: () async {
+                    final token = await di
+                        .sl<AppSharedPreferences>()
+                        .getString(authTokenKey);
+                    debugPrint('token: $token');
+                  }))
         ],
       )),
     );

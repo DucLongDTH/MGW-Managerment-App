@@ -8,8 +8,9 @@ import 'dart:convert';
 Dio createCoreDio(String _baseUrl) {
   final dio = Dio();
   dio.options.baseUrl = _baseUrl;
-  dio.options.connectTimeout = 30000; //30s
-  dio.options.receiveTimeout = 3000;
+  dio.options.connectTimeout = 60000; //30s
+  dio.options.receiveTimeout = 60000;
+  dio.options.receiveDataWhenStatusError = true;
   dio.options.contentType = 'application/json';
   dio.options.headers.putIfAbsent('lang', () => 'vi');
   dio.options.headers.putIfAbsent('Accept', () => 'application/json');
@@ -21,7 +22,7 @@ Dio createCoreDio(String _baseUrl) {
     return handler.next(options);
   }, onError: (dioError, handler) {
     //TODO handler error
-    
+
     handler.next(dioError);
   }));
   if (kDebugMode) {

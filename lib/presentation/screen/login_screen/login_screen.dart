@@ -1,11 +1,13 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
+import 'package:app_demo_flutter/constant/dialog_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
+import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -175,7 +177,11 @@ class _LoginScreenState extends State<LoginScreen> {
             loading: () {
               _isLoading.value = true;
             },
-            error: (err) {},
+            error: (err) {
+              showMgwOSDialog(context, null, (dialogContext) {
+                return const MgwOSPopup(title: 'ERROR', buttons: []);
+              });
+            },
             success: () {
               AutoRouter.of(context).replaceNamed(RoutePaths.home);
             });
