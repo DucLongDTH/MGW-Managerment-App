@@ -5,7 +5,7 @@ import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
-import 'package:app_demo_flutter/widget/mgw_button.dart';
+import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
 import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
@@ -141,7 +141,7 @@ class _StartScreenState extends State<StartScreen> {
                             _showPopup();
                           });
                     },
-                    child: MgwOSButton(
+                    child: MgwOSBaseButton(
                       width: double.infinity,
                       colorBackground: darkBlue,
                       onPressed: () {
@@ -168,7 +168,7 @@ class _StartScreenState extends State<StartScreen> {
         subTitle: "Get Api Success",
         subTitleStyle: buildSubTitlePopupStyle(),
         buttons: [
-          MgwOSButton(
+          MgwOSBaseButton(
             text: 'OK',
             colorBackground: darkBlue,
             onPressed: () {

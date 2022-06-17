@@ -5,7 +5,7 @@ import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
-import 'package:app_demo_flutter/widget/mgw_button.dart';
+import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
 import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
@@ -178,15 +178,16 @@ class _LoginScreenState extends State<LoginScreen> {
               _isLoading.value = true;
             },
             error: (err) {
-              showMgwOSDialog(context, null, (dialogContext) {
-                return const MgwOSPopup(title: 'ERROR', buttons: []);
-              });
+              // showMgwOSDialog(context, null, (dialogContext) {
+              //   return const MgwOSPopup(title: 'ERROR', buttons: []);
+              // });
+              showDialogDefaultAction(context, err);
             },
             success: () {
               AutoRouter.of(context).replaceNamed(RoutePaths.home);
             });
       },
-      child: MgwOSButton(
+      child: MgwOSBaseButton(
         width: double.infinity,
         colorBackground: darkBlue,
         onPressed: () {

@@ -33,34 +33,39 @@ class MyApp extends StatelessWidget {
       GlobalWidgetsLocalizations.delegate,
     ];
     ThemeProvider.instance.initAppTheme();
-    return MultiBlocProvider(
-      providers: _appProviders,
-      child: ScreenUtilInit(
-        builder: (context, widget) {
-          final _appRouter = di.sl.get<AppRouter>();
-          final _themeData = ThemeProvider.instance.themeData;
-          return Builder(builder: (context) {
-            return MaterialApp.router(
-              color: darkBlue,
-              builder: (context, child) {
-                ScreenUtil.init(context);
-                return MediaQuery(
-                  //Setting font does not change with system font size
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: child ?? const SizedBox(),
-                );
-              },
-              debugShowCheckedModeBanner: false,
-              title: appName,
-              theme: _themeData,
-              supportedLocales: L10n.all,
-              localizationsDelegates: _localizationsDelegates,
-              routerDelegate: AutoRouterDelegate(_appRouter),
-              routeInformationParser: _appRouter.defaultRouteParser(),
-            );
-          });
-        },
-        designSize: const Size(375, 812),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: MultiBlocProvider(
+        providers: _appProviders,
+        child: ScreenUtilInit(
+          builder: (context, widget) {
+            final _appRouter = di.sl.get<AppRouter>();
+            final _themeData = ThemeProvider.instance.themeData;
+            return Builder(builder: (context) {
+              return MaterialApp.router(
+                color: darkBlue,
+                builder: (context, child) {
+                  ScreenUtil.init(context);
+                  return MediaQuery(
+                    //Setting font does not change with system font size
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: child ?? const SizedBox(),
+                  );
+                },
+                debugShowCheckedModeBanner: false,
+                title: appName,
+                theme: _themeData,
+                supportedLocales: L10n.all,
+                localizationsDelegates: _localizationsDelegates,
+                routerDelegate: AutoRouterDelegate(_appRouter),
+                routeInformationParser: _appRouter.defaultRouteParser(),
+              );
+            });
+          },
+          designSize: const Size(375, 812),
+        ),
       ),
     );
   }

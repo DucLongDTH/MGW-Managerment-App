@@ -2,6 +2,7 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThemeProvider {
   static const defaultFontFamily = FontFamily.josefin;
@@ -16,6 +17,7 @@ class ThemeProvider {
 
   late Color _primaryColor;
   late Color _secondaryColor;
+
   late TextStyle _textStyleBold32;
   late TextStyle _textStyleBold26;
   late TextStyle _textStyleBold24;
@@ -47,7 +49,8 @@ class ThemeProvider {
         color: Colors.black,
         fontWeight: FontWeight.w500);
     _initTextStyle(baseTextStyle);
-    _primaryColor = white;
+    _primaryColor = darkBlue;
+    _secondaryColor = neonBlue;
     return baseTheme.copyWith(
       // Define the default brightness and colors.
       // brightness: Brightness.dark,
@@ -137,4 +140,113 @@ class ThemeProvider {
   TextStyle get textStyleMed14 => _textStyleMed14;
   TextStyle get textStyleMed12 => _textStyleMed12;
   TextStyle get textStyleMed10 => _textStyleMed10;
+  Color get primaryColor => _primaryColor;
+  Color get secondaryColor => _secondaryColor;
+}
+
+extension AppTextTheme on TextTheme {
+  TextStyle get primaryTextStyle =>
+      ThemeProvider.instance.textStyleMed14.copyWith(
+        fontSize: 14.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get appBarTitleTextStyle =>
+      ThemeProvider.instance.textStyleMed18.copyWith(
+        fontSize: 18.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle get inputTitleTextStyle =>
+      ThemeProvider.instance.textStyleMed14.copyWith(
+        fontSize: 14.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputTitleFilledTextStyle =>
+      ThemeProvider.instance.textStyleMed14.copyWith(
+        fontSize: 14.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputTextStyle =>
+      ThemeProvider.instance.textStyleMed16.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputDisabledTextStyle =>
+      ThemeProvider.instance.textStyleMed14.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputFocusedTextStyle => inputTextStyle;
+
+  TextStyle get inputHintTextStyle =>
+      ThemeProvider.instance.textStyleMed16.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputHelpTextStyle =>
+      ThemeProvider.instance.textStyleMed12.copyWith(
+        fontSize: 12.sp,
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get inputErrorTextStyle =>
+      ThemeProvider.instance.textStyleMed12.copyWith(
+        fontSize: 12.sp,
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get labelTextStyle =>
+      ThemeProvider.instance.textStyleMed14.copyWith(
+        fontSize: 14.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get contentTextStyle =>
+      ThemeProvider.instance.textStyleBold16.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
+      );
+
+  TextStyle get primaryButtonTextStyle =>
+      ThemeProvider.instance.textStyleBold16.copyWith(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        color: ThemeProvider.instance.secondaryColor,
+      );
+
+  TextStyle get secondaryButtonTextStyle =>
+      ThemeProvider.instance.textStyleBold16.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
+        color: ThemeProvider.instance.primaryColor,
+      );
+
+  TextStyle get dialogTitleTextStyle =>
+      ThemeProvider.instance.textStyleBold16.copyWith(
+        fontSize: 16.sp,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
+      );
+
+  TextStyle get dialogMessageTextStyle => ThemeProvider.instance.textStyleMed16
+      .copyWith(fontSize: 13.sp, fontStyle: FontStyle.normal, height: 1.2);
 }

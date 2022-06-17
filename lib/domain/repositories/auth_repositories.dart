@@ -4,5 +4,6 @@ import 'package:app_demo_flutter/domain/usecases/login_usecase/login_usecase.dar
 import 'package:dartz/dartz.dart';
 
 abstract class AuthRepository {
-  Future<Either<Exception, BaseResponse<LoginResponseModel>>> login(LoginParams params);
+  Future<Either<Exception, BaseResponse<LoginResponseModel>>> login(
+      LoginParams params);
 }

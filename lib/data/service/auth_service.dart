@@ -14,6 +14,5 @@ abstract class AuthService {
 
   @POST('/api/v2/auth/login')
   Future<HttpResponse<BaseResponse<LoginResponseModel>>> login(
-    @Body() LoginRequest loginRequest
-  );
+      @Body() LoginRequest loginRequest);
 }

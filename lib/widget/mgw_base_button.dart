@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MgwOSButton extends StatelessWidget {
+class MgwOSBaseButton extends StatelessWidget {
   final String text;
   final String iconPath;
   final Color colorBackground;
@@ -15,7 +15,7 @@ class MgwOSButton extends StatelessWidget {
   final String? packageName;
   final TextStyle? titleStyle;
 
-  const MgwOSButton(
+  const MgwOSBaseButton(
       {Key? key,
       required this.text,
       this.iconPath = "",

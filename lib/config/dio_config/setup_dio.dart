@@ -1,11 +1,14 @@
 import 'dart:developer';
 
+import 'package:app_demo_flutter/config/auth/auth_interceptor.dart';
+import 'package:app_demo_flutter/config/core/shared_preferences.dart';
 import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 
-Dio createCoreDio(String _baseUrl) {
+Dio createCoreDio(AppSharedPreferences auth, String _baseUrl,
+    Future Function()? refreshToken) {
   final dio = Dio();
   dio.options.baseUrl = _baseUrl;
   dio.options.connectTimeout = 60000; //30s
@@ -15,27 +18,13 @@ Dio createCoreDio(String _baseUrl) {
   dio.options.headers.putIfAbsent('lang', () => 'vi');
   dio.options.headers.putIfAbsent('Accept', () => 'application/json');
   dio.interceptors.add(DioErrorInterceptors());
-  dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
-    //TODO add auth token
-
-    options.headers.putIfAbsent('authorization', () => '');
-    return handler.next(options);
-  }, onError: (dioError, handler) {
-    //TODO handler error
-
-    handler.next(dioError);
-  }));
+  dio.interceptors.add(AuthInterceptor(auth, dio, refreshToken));
   if (kDebugMode) {
     dio.interceptors.add(LogInterceptor(logPrint: (Object logM) {
       log(logM.toString());
     }));
     dio.interceptors.add(Dio2CurlInterceptor());
   }
-  // final cacheStore = MemCacheStore(maxSize: 10485760, maxEntrySize: 1048576);
-  // dio.interceptors.add(
-  //   DioCacheInterceptor(
-  //       options: CacheOptions(store: cacheStore, policy: CachePolicy.noCache)),
-  // );
 
   return dio;
 }

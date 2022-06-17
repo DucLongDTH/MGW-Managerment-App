@@ -28,5 +28,6 @@ void registerDI() {
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl.get()));
 
   // // bloc
-  sl.registerFactory(() => LoginCubit(loginUseCase: sl.get(),appSharedPreferences: sl.get()));
+  sl.registerFactory(
+      () => LoginCubit(loginUseCase: sl.get(), appSharedPreferences: sl.get()));
 }

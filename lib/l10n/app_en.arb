@@ -1,3 +1,12 @@
 {
-    "appName":"Quản lí 4 Anh Em"
+    "lbl_agree_button":"Đồng ý",
+    "lbl_error_title":"Rất tiếc",
+    "lbl_server_error":"Hệ thống đã xảy ra lỗi. Quý khách vui lòng thử lại sau 10 phút. Chúng tôi xin lỗi vì sự bất tiện này và mong quý khách thông cảm.",
+    "lbl_errorButton":"OK",
+    "lbl_errorMsg400":"Yêu cầu không hợp lệ, bạn vui lòng kiểm tra lại",
+    "lbl_errorMsg401":"Yêu cầu cần xác thực để tiếp tục, bạn vui lòng kiểm tra lại",
+    "lbl_errorMsg503":"Xin lỗi bạn vì sự bất tiện này. Hiện tại chúng tôi đang triển khai bảo trì hệ thống. Vui lòng thử lại sau",
+    "lbl_errorMsg503_title":"Chúng tôi sẽ trở lại sớm",
+    "lbl_errorMsgConnection":"Kết nối WIFI-Mạng di động bị gián đoạn (hoặc không có kết nối), bạn vui lòng kiểm tra lại",
+    "lbl_understand":"Đã hiểu"
 }

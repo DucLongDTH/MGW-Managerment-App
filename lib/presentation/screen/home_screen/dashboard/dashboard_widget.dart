@@ -3,7 +3,7 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/key_utils.dart';
 import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/bar_chart_sample.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
-import 'package:app_demo_flutter/widget/mgw_button.dart';
+import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -48,7 +48,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
           const Expanded(flex: 1, child: BarChartSample1()),
           Expanded(
               flex: 1,
-              child: MgwOSButton(
+              child: MgwOSBaseButton(
                   text: 'GET TOKEN',
                   colorBackground: red,
                   onPressed: () async {
