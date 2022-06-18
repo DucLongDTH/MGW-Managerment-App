@@ -149,5 +149,69 @@ flutter:
           weight: 500
         - asset: assets/fonts/josefin/JosefinSans-Bold.ttf
           weight: 700
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-Black.ttf
+          weight: 900
+        - asset: assets/fonts/inter/Inter-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/inter/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-Light.ttf
+          weight: 300
+        - asset: assets/fonts/inter/Inter-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/inter/Inter-Thin.ttf
+          weight: 100
+    # - family: SF Pro Display
+    #   fonts:
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Black.ttf
+    #       weight: 900
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-BlackItalic.ttf
+    #       weight: 900
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Heavy.ttf
+    #       weight: 800
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-HeavyItalic.ttf
+    #       weight: 800
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Bold.ttf
+    #       weight: 700
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-BoldItalic.ttf
+    #       weight: 700
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-SemiBold.ttf
+    #       weight: 600
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-SemiBoldItalic.ttf
+    #       weight: 600
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Medium.ttf
+    #       weight: 500
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-MediumItalic.ttf
+    #       weight: 500
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Regular.ttf
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-RegularItalic.ttf
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Light.ttf
+    #       weight: 300
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-LightItalic.ttf
+    #       weight: 300
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-UltraLight.ttf
+    #       weight: 200
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-UltraLightItalic.ttf
+    #       weight: 200
+    #       style: italic
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-Thin.ttf
+    #       weight: 100
+    #     - asset: assets/fonts/sfpro/SF-Pro-Display-ThinItalic.ttf
+    #       weight: 100
+    #       style: italic
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

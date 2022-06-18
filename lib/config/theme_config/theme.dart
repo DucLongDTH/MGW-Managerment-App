@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThemeProvider {
-  static const defaultFontFamily = FontFamily.josefin;
+  static const defaultFontFamily = FontFamily.inter;
 
   ThemeProvider._privateConstructor();
 
