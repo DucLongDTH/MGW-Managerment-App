@@ -39,10 +39,14 @@ class AuthTokenService {
       dioClient.interceptors.add(Dio2CurlInterceptor());
     }
     final deviceID = await getDeviceID();
+    final data = _buildData(deviceID);
     final response = await dioClient.post('/api/v2/auth/refresh',
-        options: options,
-        data: FormData.fromMap({'platform': 'mobile', 'device': deviceID}));
+        options: options, data: data);
     debugPrint('');
+
     return TokenResponse.fromJson(response.data);
   }
+
+  Map<String, String?> _buildData(String? deviceID) =>
+      {'platform': 'mobile', 'device': deviceID};
 }

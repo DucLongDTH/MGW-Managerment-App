@@ -97,9 +97,9 @@ mixin DefaultDialogMixin {
     if (exception is ServerUnderMaintainErrorException) {
       exit(0);
     } else if (exception is UnauthorizedException) {
-      return GetIt.instance
-          .get<SDKActionHandler>()
-          .handleTokenExpired(context, exception);
+      // return GetIt.instance
+      //     .get<SDKActionHandler>()
+      //     .handleTokenExpired(context, exception);
     }
     return Future.value(null);
   }

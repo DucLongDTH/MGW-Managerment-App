@@ -1,12 +1,16 @@
+import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/dialog_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
+import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
+import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -177,10 +181,25 @@ class _LoginScreenState extends State<LoginScreen> {
               _isLoading.value = true;
             },
             error: (err) {
-              // showMgwOSDialog(context, null, (dialogContext) {
-              //   return const MgwOSPopup(title: 'ERROR', buttons: []);
-              // });
-              showDialogDefaultAction(context, err);
+              if (err is UnauthorizedException || err is BadRequestException) {
+                showMgwOSDialog(context, const Key(''), (dialogContext) {
+                  return MgwOSPopup(
+                      title: AppLocalizations.of(context)!.lbl_error_title,
+                      subTitle:
+                          'Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại',
+                      buttons: [
+                        MgwOSAppButton(
+                            style: AppButtonStyle.fill,
+                            title:
+                                AppLocalizations.of(context)!.lbl_agree_button,
+                            onPressed: () {
+                              Navigator.of(dialogContext).pop();
+                            })
+                      ]);
+                });
+              } else {
+                showDialogDefaultAction(context, err);
+              }
             },
             success: () {
               AutoRouter.of(context).replaceNamed(RoutePaths.home);
