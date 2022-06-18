@@ -1,15 +1,11 @@
-import 'package:app_demo_flutter/config/core/action_handler.dart';
 import 'package:app_demo_flutter/config/dialog_manager/default_dialog_mixins.dart';
 import 'package:app_demo_flutter/config/dialog_manager/dialog_manager.dart';
-import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
-import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 
 class AppDialogManager extends DialogManager with DefaultDialogMixin {
   @override

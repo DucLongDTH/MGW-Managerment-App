@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:app_demo_flutter/config/dio_config/connecttivity_util.dart';
 import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
-import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';

@@ -7,7 +7,6 @@ import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
-import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
