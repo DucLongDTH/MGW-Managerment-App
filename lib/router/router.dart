@@ -1,5 +1,6 @@
 import 'package:app_demo_flutter/presentation/screen/home_screen/home_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/login_screen/login_screen.dart';
+import 'package:app_demo_flutter/presentation/screen/search_screen/search_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/start_screen/splash_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/start_screen/start_screen.dart';
 import 'package:auto_route/auto_route.dart';
@@ -10,6 +11,7 @@ class RoutePaths {
   static const start = '/Start';
   static const login = '/loginScreen';
   static const home = '/homeScreen';
+  static const search = '/searchScreen';
 }
 
 @MaterialAutoRouter(routes: <AutoRoute>[
@@ -17,5 +19,6 @@ class RoutePaths {
   AutoRoute(path: RoutePaths.splash, page: SplashScreen, initial: true),
   AutoRoute(path: RoutePaths.home, page: HomeScreen),
   AutoRoute(path: RoutePaths.login, page: LoginScreen),
+  AutoRoute(path: RoutePaths.search, page: SearchScreen),
 ])
 class $AppRouter {}

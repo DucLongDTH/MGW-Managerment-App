@@ -1,7 +1,7 @@
 import 'package:app_demo_flutter/config/core/shared_preferences.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/key_utils.dart';
-import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/bar_chart_sample.dart';
+import 'package:app_demo_flutter/presentation/screen/dashboard_screen/bar_chart_sample.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:flutter/material.dart';

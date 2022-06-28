@@ -8,5 +8,10 @@
     "lbl_errorMsg503":"Xin lỗi bạn vì sự bất tiện này. Hiện tại chúng tôi đang triển khai bảo trì hệ thống. Vui lòng thử lại sau",
     "lbl_errorMsg503_title":"Chúng tôi sẽ trở lại sớm",
     "lbl_errorMsgConnection":"Kết nối WIFI-Mạng di động bị gián đoạn (hoặc không có kết nối), bạn vui lòng kiểm tra lại",
-    "lbl_understand":"Đã hiểu"
+    "lbl_understand":"Đã hiểu",
+    "lbl_item_menu_dashboard":"Trang chủ",
+    "lbl_item_menu_bill":"Hóa Đơn",
+    "lbl_item_menu_product":"Sản phẩm",
+    "lbl_item_menu_more":"Nhiều hơn",
+    "lbl_search_hint": "Tìm kiếm ..."
 }

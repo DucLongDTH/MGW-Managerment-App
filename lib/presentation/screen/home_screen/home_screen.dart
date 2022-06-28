@@ -1,8 +1,9 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
-import 'package:app_demo_flutter/presentation/screen/home_screen/dashboard/dashboard_widget.dart';
-import 'package:app_demo_flutter/presentation/screen/home_screen/product/product_widget.dart';
+import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
+import 'package:app_demo_flutter/presentation/screen/dashboard_screen/dashboard_widget.dart';
+import 'package:app_demo_flutter/presentation/screen/product_screen/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,30 +34,36 @@ class _HomeScreenState extends State<HomeScreen> {
               _currentPage = index;
             });
           },
+          type: BottomNavigationBarType.fixed,
           backgroundColor: white,
           selectedLabelStyle:
-              ThemeProvider.instance.textStyleBold14.copyWith(color: darkBlue),
+              ThemeProvider.instance.textStyleBold12.copyWith(color: darkBlue),
           unselectedLabelStyle:
-              ThemeProvider.instance.textStyleMed14.copyWith(color: grey),
+              ThemeProvider.instance.textStyleMed10.copyWith(color: grey),
           items: [
             BottomNavigationBarItem(
                 icon:
                     _buildIcon(asset: Assets.icons.icHomeOutline, color: grey),
-                label: 'Home',
+                label: AppLocalizations.of(context)!.lbl_item_menu_dashboard,
                 activeIcon:
                     _buildIcon(asset: Assets.icons.icHome, color: darkBlue)),
             BottomNavigationBarItem(
                 icon: _buildIcon(
                     asset: Assets.icons.icInvoiceOutline, color: grey),
-                label: 'Bill',
+                label: AppLocalizations.of(context)!.lbl_item_menu_bill,
                 activeIcon:
                     _buildIcon(asset: Assets.icons.icInvoice, color: darkBlue)),
             BottomNavigationBarItem(
                 icon: _buildIcon(
                     asset: Assets.icons.icProductOutline, color: grey),
-                label: 'Product',
+                label: AppLocalizations.of(context)!.lbl_item_menu_product,
                 activeIcon:
                     _buildIcon(asset: Assets.icons.icProduct, color: darkBlue)),
+            BottomNavigationBarItem(
+                icon: _buildIcon(asset: Assets.icons.icMenuMore, color: grey),
+                label: AppLocalizations.of(context)!.lbl_item_menu_more,
+                activeIcon: _buildIcon(
+                    asset: Assets.icons.icMenuMore, color: darkBlue)),
           ]),
     );
   }
@@ -67,7 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
       'Index 2: Bill',
       style: ThemeProvider.instance.textStyleBold24,
     ),
-    const ProductPageWidget()
+    const ProductPageWidget(),
+    Text(
+      'Index 2: Bill',
+      style: ThemeProvider.instance.textStyleBold24,
+    ),
   ];
 
   _buildIcon({required asset, required color}) {

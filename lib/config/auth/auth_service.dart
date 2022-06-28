@@ -40,6 +40,7 @@ class AuthTokenService {
     }
     final deviceID = await getDeviceID();
     final data = _buildData(deviceID);
+    //TODO: HANDLE LATER
     final response = await dioClient.post('/api/v2/auth/refresh',
         options: options, data: data);
     debugPrint('');

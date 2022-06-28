@@ -1,11 +1,15 @@
+import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_state.dart';
-import 'package:app_demo_flutter/presentation/screen/home_screen/product/item_product_widget.dart';
+import 'package:app_demo_flutter/presentation/screen/product_screen/item_product_widget.dart';
+import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,28 +81,35 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
       padding: EdgeInsets.symmetric(horizontal: 24.h),
       width: double.infinity,
       color: darkBlue,
-      child: Column(
-        children: [
-          MgwOSTextField(
-            heightTextField: 50.h,
-            inputFieldKey: const Key('txtSearchProduct'),
-            title: 'Search Product',
-            keyboardType: TextInputType.emailAddress,
-            controller: _searchController,
-            widgetLeft: SvgPicture.asset(
-              Assets.icons.icSearch,
-              width: 21.w,
-              height: 21.h,
-              color: greyIcon,
-            ),
-            onChange: (value) {},
-            onSaved: (value) {},
-            contentPadding: 10.r,
-          ),
-          SizedBox(
-            height: 15.h,
-          )
-        ],
+      child: InkWell(
+        onTap: () {
+          AutoRouter.of(context).pushNamed(RoutePaths.search);
+        },
+        child: Hero(
+          tag: 'hero',
+          transitionOnUserGestures: true,
+          child: Card(
+              color: white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.icons.icSearch,
+                        width: 21.w,
+                        height: 21.h,
+                        color: grey,
+                      ),
+                      SizedBox(width: 16.w),
+                      Text(
+                        AppLocalizations.of(context)!.lbl_search_hint,
+                        style: ThemeProvider.instance.textStyleMed14
+                            .copyWith(color: grey),
+                      )
+                    ]),
+              )),
+        ),
       ),
     );
   }
