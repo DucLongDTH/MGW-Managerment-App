@@ -2,8 +2,11 @@ import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
+import 'package:app_demo_flutter/presentation/screen/bill_screen/bill_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/dashboard_screen/dashboard_widget.dart';
+import 'package:app_demo_flutter/presentation/screen/extends_screen/extends_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/product_screen/product_widget.dart';
+import 'package:app_demo_flutter/widget/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,11 +19,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends BaseState<HomeScreen> {
   var _currentPage = 0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildLayout(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -70,15 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> listScreenWidget = [
     const DashBoardWidget(),
-    Text(
-      'Index 2: Bill',
-      style: ThemeProvider.instance.textStyleBold24,
-    ),
+    const BillScreen(),
     const ProductPageWidget(),
-    Text(
-      'Index 2: Bill',
-      style: ThemeProvider.instance.textStyleBold24,
-    ),
+    const ExtendsScreen()
   ];
 
   _buildIcon({required asset, required color}) {

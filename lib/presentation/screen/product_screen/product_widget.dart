@@ -1,6 +1,4 @@
-import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
-import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_state.dart';
@@ -8,13 +6,12 @@ import 'package:app_demo_flutter/presentation/screen/product_screen/item_product
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
-import 'package:app_demo_flutter/widget/mgw_textfield.dart';
+import 'package:app_demo_flutter/widget/mgw_search_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class ProductPageWidget extends StatefulWidget {
@@ -25,7 +22,6 @@ class ProductPageWidget extends StatefulWidget {
 }
 
 class _ProductPageWidgetState extends State<ProductPageWidget> {
-  late TextEditingController _searchController;
   late GetProductCubit _getProductCubit;
   final scrollController = ScrollController();
   int listCount = 0;
@@ -35,7 +31,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
     _getProductCubit = BlocProvider.of<GetProductCubit>(context);
     _getProductCubit.getData(currentPage);
     scrollController.addListener(() {
@@ -61,7 +56,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               size: 30.w,
               color: white,
             )).padding(right: 8.w),
-            title: 'Product',
+            title: AppLocalizations.of(context)!.lbl_title_product,
             textColor: white,
             backgroundColor: darkBlue,
             elevation: 0),
@@ -77,40 +72,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
   }
 
   Widget _buildSearch() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24.h),
-      width: double.infinity,
-      color: darkBlue,
-      child: InkWell(
-        onTap: () {
-          AutoRouter.of(context).pushNamed(RoutePaths.search);
-        },
-        child: Hero(
-          tag: 'hero',
-          transitionOnUserGestures: true,
-          child: Card(
-              color: white,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Assets.icons.icSearch,
-                        width: 21.w,
-                        height: 21.h,
-                        color: grey,
-                      ),
-                      SizedBox(width: 16.w),
-                      Text(
-                        AppLocalizations.of(context)!.lbl_search_hint,
-                        style: ThemeProvider.instance.textStyleMed14
-                            .copyWith(color: grey),
-                      )
-                    ]),
-              )),
-        ),
-      ),
+    return MgwSearchButton(
+      onClick: () => AutoRouter.of(context).pushNamed(RoutePaths.search),
     );
   }
 

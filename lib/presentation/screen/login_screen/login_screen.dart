@@ -7,6 +7,7 @@ import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
+import 'package:app_demo_flutter/widget/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
@@ -25,7 +26,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends BaseState<LoginScreen> {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   var _isHidePassword = true;
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildLayout(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(

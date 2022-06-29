@@ -13,6 +13,8 @@
     "lbl_item_menu_bill":"Hóa Đơn",
     "lbl_item_menu_product":"Sản phẩm",
     "lbl_item_menu_more":"Nhiều hơn",
-    "lbl_search_hint": "Tìm kiếm ..."
-
+    "lbl_search_hint": "Tìm kiếm ...",
+    "lbl_title_product":"Sản phẩm",
+    "lbl_title_dashboard":"Trang chủ",
+    "lbl_title_bill":"Hóa đơn"
 }

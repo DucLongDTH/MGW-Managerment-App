@@ -1,27 +1,28 @@
+
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/key_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+class MgwSearchButton extends StatelessWidget {
+  final VoidCallback onClick;
+  const MgwSearchButton({Key? key, required this.onClick}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends BaseState<SearchScreen> {
-  @override
-  Widget buildLayout(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 24.h),
+      width: double.infinity,
+      color: darkBlue,
+      child: InkWell(
+        onTap: onClick,
         child: Hero(
           tag: searchButtonTag,
+          transitionOnUserGestures: true,
           child: Card(
               color: white,
               child: Padding(

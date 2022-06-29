@@ -1,6 +1,8 @@
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:styled_widget/styled_widget.dart';
 
 class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
@@ -14,6 +16,7 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? widgetRight;
   final Widget? widgetLeft;
   final double? elevation;
+  final String? subTitle;
 
   const MgwOSAppBar(
       {Key? key,
@@ -27,7 +30,8 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.onClickIconRight,
       this.widgetRight,
       this.widgetLeft,
-      this.elevation})
+      this.elevation,
+      this.subTitle})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -54,10 +58,21 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: widgetLeft,
             )
           : null,
-      title: Text(
-        title ?? '',
-        style:
-            ThemeProvider.instance.textStyleBold18.copyWith(color: textColor),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title ?? '',
+            style: ThemeProvider.instance.textStyleBold18
+                .copyWith(color: textColor),
+          ).padding(bottom: 4.h),
+          subTitle?.isNotEmpty == true
+              ? Text(subTitle ?? '',
+                  style: ThemeProvider.instance.textStyleMed14
+                      .copyWith(color: Colors.yellow))
+              : const SizedBox.shrink()
+        ],
       ),
       backgroundColor: backgroundColor ?? white,
       centerTitle: false,
