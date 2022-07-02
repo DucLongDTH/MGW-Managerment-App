@@ -6,9 +6,9 @@ import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
-import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_app_button.dart';
+import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:app_demo_flutter/widget/mgw_textfield.dart';
@@ -18,104 +18,94 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends BaseState<LoginScreen> {
+class _RegisterScreenState extends BaseState<RegisterScreen> {
+  bool _isHidePassword = true;
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
-  var _isHidePassword = true;
+  late TextEditingController _emailController;
 
   @override
   void initState() {
-    _usernameController =
-        TextEditingController(text: 'longvkook0312@gmail.com');
-    _passwordController = TextEditingController(text: 'Asd@12345');
     super.initState();
+    _usernameController = TextEditingController();
+    _passwordController = TextEditingController();
+    _emailController = TextEditingController();
   }
 
   @override
   Widget buildLayout(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: WillPopScope(
-          onWillPop: (() => Future.value(false)),
-          child: SafeArea(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 50.h),
-                  Image.asset(Assets.images.logo.path,
-                      width: 60.w, height: 60.h),
-                  SizedBox(height: 50.h),
-                  _buildCardLogin()
-                ],
-              ),
-            ),
+      appBar: MgwOSAppBar(
+          title: AppLocalizations.of(context)!.lbl_register,
+          textColor: darkBlue,
+          backgroundColor: white,
+          centerTitle: true,
+          elevation: 1),
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          height: MediaQuery.of(context).size.height - 56.h,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 50.h),
+              _buildCardLogin(),
+              const Spacer(),
+              _buildButtonLogin(),
+              SizedBox(height: 50.h),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _buildCardLogin() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(12.r)),
-        boxShadow: const [
-          BoxShadow(
-            color: greyShadow,
-            spreadRadius: 3,
-            blurRadius: 2,
-            offset: Offset(0, 1), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 40.h),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(AppLocalizations.of(context)!.lbl_sign_in,
-                style: ThemeProvider.instance.textStyleBold26
-                    .copyWith(color: black, height: 1.2)),
-            SizedBox(height: 20.h),
-            _buildTextFieldUserName(),
-            SizedBox(
-              height: 15.h,
-            ),
-            _buildTextFieldPassword(),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {
-                AutoRouter.of(context).pushNamed(RoutePaths.register);
-              },
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Text(AppLocalizations.of(context)!.lbl_register,
-                    style: ThemeProvider.instance.textStyleBold14
-                        .copyWith(color: cyan)),
-              ),
-            ),
-            SizedBox(height: 25.h),
-            _buildButtonLogin()
-          ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildTextFieldEmail(),
+        SizedBox(
+          height: 15.h,
         ),
+        _buildTextFieldUserName(),
+        SizedBox(
+          height: 15.h,
+        ),
+        _buildTextFieldPassword(),
+      ],
+    );
+  }
+
+  Widget _buildTextFieldEmail() {
+    return MgwOSTextField(
+      inputFieldKey: const Key('txtEmail'),
+      title: AppLocalizations.of(context)!.lbl_email,
+      keyboardType: TextInputType.emailAddress,
+      controller: _emailController,
+      widgetLeft: const Icon(
+        Icons.email,
+        color: greyIcon,
       ),
+      onChange: (value) {},
+      onSaved: (value) {},
     );
   }
 
   Widget _buildTextFieldUserName() {
     return MgwOSTextField(
       inputFieldKey: const Key('txtUserName'),
-      title: AppLocalizations.of(context)!.lbl_email,
-      keyboardType: TextInputType.emailAddress,
+      title: AppLocalizations.of(context)!.lbl_username,
+      keyboardType: TextInputType.text,
       controller: _usernameController,
       widgetLeft: SvgPicture.asset(
         Assets.icons.icUser,
@@ -167,11 +157,11 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   Widget _buildButtonLogin() {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        loadingOverlay.hide();
+        // _isLoading.value = false;
         state.maybeWhen(
             orElse: () {},
             loading: () {
-              loadingOverlay.show(context);
+              // _isLoading.value = true;
             },
             error: (err) {
               if (err is UnauthorizedException || err is BadRequestException) {
@@ -195,18 +185,18 @@ class _LoginScreenState extends BaseState<LoginScreen> {
               }
             },
             success: () {
-              AutoRouter.of(context).replaceNamed(RoutePaths.home);
+              AutoRouter.of(context).pop();
             });
       },
       child: MgwOSBaseButton(
         width: double.infinity,
         colorBackground: darkBlue,
         onPressed: () {
-          BlocProvider.of<LoginCubit>(context).login(
-              _usernameController.text.trim(), _passwordController.text.trim());
+          // BlocProvider.of<LoginCubit>(context).login(
+          //     _usernameController.text.trim(), _passwordController.text.trim());
         },
         cornerRadius: 12.r,
-        text: AppLocalizations.of(context)!.lbl_btn_login,
+        text: AppLocalizations.of(context)!.lbl_btn_register,
         titleStyle:
             ThemeProvider.instance.textStyleBold18.copyWith(color: neonBlue),
       ),

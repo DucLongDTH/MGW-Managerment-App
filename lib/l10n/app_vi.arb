@@ -10,7 +10,7 @@
     "lbl_errorMsgConnection":"Kết nối WIFI-Mạng di động bị gián đoạn (hoặc không có kết nối), bạn vui lòng kiểm tra lại",
     "lbl_understand":"Đã hiểu",
     "lbl_item_menu_dashboard":"Trang chủ",
-    "lbl_item_menu_bill":"Hóa Đơn",
+    "lbl_item_menu_bill":"Hóa đơn",
     "lbl_item_menu_product":"Sản phẩm",
     "lbl_item_menu_more":"Nhiều hơn",
     "lbl_search_hint": "Tìm kiếm ...",
@@ -21,5 +21,8 @@
     "lbl_register": "Đăng kí tài khoản",
     "lbl_email": "Email",
     "lbl_password":"Mật khẩu",
-    "lbl_error_wrong_account":"Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại"
+    "lbl_error_wrong_account":"Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại",
+    "lbl_btn_login":"Đăng nhập",
+    "lbl_btn_register":"Đăng kí",
+    "lbl_username":"Họ và Tên"
 }

@@ -17,6 +17,7 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? widgetLeft;
   final double? elevation;
   final String? subTitle;
+  final bool? centerTitle;
 
   const MgwOSAppBar(
       {Key? key,
@@ -31,7 +32,8 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.widgetRight,
       this.widgetLeft,
       this.elevation,
-      this.subTitle})
+      this.subTitle,
+      this.centerTitle})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -58,24 +60,30 @@ class MgwOSAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: widgetLeft,
             )
           : null,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title ?? '',
-            style: ThemeProvider.instance.textStyleBold18
-                .copyWith(color: textColor),
-          ).padding(bottom: 4.h),
-          subTitle?.isNotEmpty == true
-              ? Text(subTitle ?? '',
-                  style: ThemeProvider.instance.textStyleMed14
-                      .copyWith(color: Colors.yellow))
-              : const SizedBox.shrink()
-        ],
-      ),
+      title: subTitle == null
+          ? Text(
+              title ?? '',
+              style: ThemeProvider.instance.textStyleBold18
+                  .copyWith(color: textColor),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title ?? '',
+                  style: ThemeProvider.instance.textStyleBold18
+                      .copyWith(color: textColor),
+                ).padding(bottom: 4.h),
+                subTitle?.isNotEmpty == true
+                    ? Text(subTitle ?? '',
+                        style: ThemeProvider.instance.textStyleMed14
+                            .copyWith(color: Colors.yellow))
+                    : const SizedBox.shrink()
+              ],
+            ),
       backgroundColor: backgroundColor ?? white,
-      centerTitle: false,
+      centerTitle: centerTitle ?? false,
     );
   }
 

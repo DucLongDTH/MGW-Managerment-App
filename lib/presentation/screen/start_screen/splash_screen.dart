@@ -18,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  AppSharedPreferences _appSharedPreferences =
+  final AppSharedPreferences _appSharedPreferences =
       GetIt.instance.get<AppSharedPreferences>();
   @override
   void initState() {

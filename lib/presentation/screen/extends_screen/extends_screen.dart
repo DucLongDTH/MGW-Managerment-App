@@ -1,7 +1,6 @@
 import 'package:app_demo_flutter/constant/avatar_utils.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
-import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/base/base_state.dart';
