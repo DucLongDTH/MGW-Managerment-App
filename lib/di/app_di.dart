@@ -5,6 +5,7 @@ import 'package:app_demo_flutter/config/core/shared_preferences_impl.dart';
 import 'package:app_demo_flutter/config/dialog_manager/app_dialog_manager.dart';
 import 'package:app_demo_flutter/config/dialog_manager/dialog_manager.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
+import 'package:app_demo_flutter/widget/base/loading_overlay.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:app_demo_flutter/config/dio_config/setup_dio.dart' as dio;
@@ -14,13 +15,15 @@ import 'package:app_demo_flutter/di/product_di.dart' as product;
 final sl = GetIt.instance;
 
 Future<void> initDI() async {
-  sl.registerSingleton(AppRouter());
-  sl.registerSingleton(baseUrl, instanceName: baseUrlName);
-  sl.registerSingleton<AppSharedPreferences>(AppSharedPreferencesImpl());
+  sl.registerLazySingleton(() => AppRouter());
+  sl.registerLazySingleton(() => baseUrl, instanceName: baseUrlName);
+  sl.registerLazySingleton<AppSharedPreferences>(
+      () => AppSharedPreferencesImpl());
   final authTokenService = AuthTokenService();
-  sl.registerSingleton<Dio>(
+  sl.registerLazySingleton<Dio>(() =>
       dio.createCoreDio(sl.get(), baseUrl, authTokenService.refreshToken));
   sl.registerLazySingleton<DialogManager>(() => AppDialogManager());
+  sl.registerLazySingleton(() => LoadingOverlay());
   demo.registerDI();
   product.registerDI();
 }

@@ -7,7 +7,7 @@ import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/router/router.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
+import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_base_button.dart';
 import 'package:app_demo_flutter/widget/mgw_loading.dart';
@@ -34,7 +34,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   @override
   void initState() {
-    _usernameController = TextEditingController(text: 'longvkook0312@gmail.com');
+    _usernameController =
+        TextEditingController(text: 'longvkook0312@gmail.com');
     _passwordController = TextEditingController(text: 'Asd@12345');
     super.initState();
   }

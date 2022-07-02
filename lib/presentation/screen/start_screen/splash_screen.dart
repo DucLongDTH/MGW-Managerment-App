@@ -1,11 +1,14 @@
 import 'package:app_demo_flutter/config/app_config/app_config.dart';
+import 'package:app_demo_flutter/config/core/shared_preferences.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
+import 'package:app_demo_flutter/constant/key_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,6 +18,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  AppSharedPreferences _appSharedPreferences =
+      GetIt.instance.get<AppSharedPreferences>();
   @override
   void initState() {
     _nextToMainOrLogin();
@@ -54,8 +59,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _nextToMainOrLogin() async {
+    await _appSharedPreferences.remove(authTokenKey);
+    await _appSharedPreferences.remove(refreshTokenKey);
     await Future.delayed(const Duration(seconds: 2), () {
-      // TODO check login or main screen
       AutoRouter.of(context).replaceNamed(RoutePaths.login);
     });
   }

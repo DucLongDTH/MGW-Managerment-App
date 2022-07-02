@@ -1,6 +1,6 @@
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
+import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

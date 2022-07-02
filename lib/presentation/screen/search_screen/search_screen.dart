@@ -3,7 +3,7 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/key_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
+import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

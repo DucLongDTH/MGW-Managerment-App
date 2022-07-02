@@ -1,10 +1,16 @@
-import 'package:app_demo_flutter/config/theme_config/theme.dart';
+import 'package:app_demo_flutter/constant/avatar_utils.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
+import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
+import 'package:app_demo_flutter/router/router.dart';
+import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:collection/collection.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class ExtendsScreen extends StatefulWidget {
@@ -15,6 +21,14 @@ class ExtendsScreen extends StatefulWidget {
 }
 
 class _ExtendsScreenState extends BaseState<ExtendsScreen> {
+  late LogoutCubit _logoutCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _logoutCubit = BlocProvider.of<LogoutCubit>(context);
+  }
+
   @override
   Widget buildLayout(BuildContext context) {
     return Scaffold(
@@ -24,29 +38,25 @@ class _ExtendsScreenState extends BaseState<ExtendsScreen> {
             height: 80.h,
             widgetLeft: Padding(
               padding: EdgeInsets.only(left: 10.w),
-              child: _getAvatarByName('Nguyen Duc Long'),
+              child: getAvatarByName('Nguyen Duc Long'),
             ),
+            widgetRight: GestureDetector(
+                onTap: (() async {
+                  loadingOverlay.show(context);
+                  await _logoutCubit.logout().then((value) {
+                    AutoRouter.of(context).replaceNamed(RoutePaths.login);
+                  });
+                  loadingOverlay.hide();
+                }),
+                child: SvgPicture.asset(
+                  Assets.icons.icSignOut,
+                  color: white,
+                )).padding(right: 8.w),
             title: 'Nguyen Duc Long',
             subTitle: 'Admin',
             textColor: white,
             backgroundColor: darkBlue,
             elevation: 0),
         body: Container());
-  }
-
-  Widget _getAvatarByName(String name) {
-    final listSplistName = name.split(' ');
-
-    final nameShort = listSplistName.first.isNotEmpty
-        ? '${(listSplistName.first[0])}${(listSplistName.last[0])}'
-        : '--';
-    return CircleAvatar(
-      backgroundColor: white,
-      child: Center(
-        child: Text(nameShort,
-            style: ThemeProvider.instance.textStyleBold12
-                .copyWith(color: darkBlue)),
-      ),
-    );
   }
 }

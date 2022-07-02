@@ -6,7 +6,7 @@ import 'package:app_demo_flutter/presentation/screen/bill_screen/bill_screen.dar
 import 'package:app_demo_flutter/presentation/screen/dashboard_screen/dashboard_widget.dart';
 import 'package:app_demo_flutter/presentation/screen/extends_screen/extends_screen.dart';
 import 'package:app_demo_flutter/presentation/screen/product_screen/product_widget.dart';
-import 'package:app_demo_flutter/widget/base_state.dart';
+import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

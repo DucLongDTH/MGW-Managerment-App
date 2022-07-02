@@ -1,6 +1,7 @@
 import 'package:app_demo_flutter/data/model/base_response/base_response.dart';
 import 'package:app_demo_flutter/data/model/login_request/login_request.dart';
 import 'package:app_demo_flutter/data/model/login_response_model/login_response_model.dart';
+import 'package:app_demo_flutter/data/model/logout_request/logout_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,4 +16,8 @@ abstract class AuthService {
   @POST('/api/v2/auth/login')
   Future<HttpResponse<BaseResponse<LoginResponseModel>>> login(
       @Body() LoginRequest loginRequest);
+
+  @POST('/api/v2/auth/logout')
+  Future<HttpResponse<BaseResponse<dynamic>>> logout(
+      @Body() LogoutRequest logoutRequest);
 }

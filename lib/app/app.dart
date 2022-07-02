@@ -1,3 +1,4 @@
+// ignore_for_file: implementation_imports
 import 'package:app_demo_flutter/config/app_config/app_config.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
@@ -5,6 +6,7 @@ import 'package:app_demo_flutter/di/app_di.dart' as di;
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/l10n/l10n.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -74,6 +76,9 @@ class MyApp extends StatelessWidget {
     return [
       BlocProvider(
         create: (_) => di.sl<LoginCubit>(),
+      ),
+      BlocProvider(
+        create: (_) => di.sl<LogoutCubit>(),
       ),
       BlocProvider(
         create: (_) => di.sl<GetProductCubit>(),
