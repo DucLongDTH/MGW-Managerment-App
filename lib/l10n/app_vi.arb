@@ -24,5 +24,8 @@
     "lbl_error_wrong_account":"Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại",
     "lbl_btn_login":"Đăng nhập",
     "lbl_btn_register":"Đăng kí",
-    "lbl_username":"Họ và Tên"
+    "lbl_username":"Họ và Tên",
+    "lbl_notes":"Lưu ý!",
+    "lbl_must_fill_all":"Bạn cần điền đầy đủ thông tin. Thông tin đang bị thiếu hoặc sai định dạng",
+    "lbl_duplicate_account":"Email của bạn đã được sử dụng. Vui lòng đăng kí tài khoản với email khác"
 }

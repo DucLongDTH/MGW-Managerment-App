@@ -1,6 +1,7 @@
 import 'package:app_demo_flutter/data/model/base_response/base_response.dart';
 import 'package:app_demo_flutter/data/model/login_response_model/login_response_model.dart';
 import 'package:app_demo_flutter/data/model/logout_request/logout_request.dart';
+import 'package:app_demo_flutter/data/model/register_request/register_request.dart';
 import 'package:app_demo_flutter/data/service/auth_service.dart';
 import 'package:app_demo_flutter/domain/usecases/login_usecase/login_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -12,6 +13,9 @@ abstract class AuthRemoteDataSource {
 
   Future<Either<Exception, BaseResponse<dynamic>>> logout(
       LogoutRequest logoutRequest);
+
+  Future<Either<Exception, BaseResponse<dynamic>>> register(
+      RegisterRequest registerRequest);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -24,7 +28,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       LoginParams params) async {
     try {
       final response = await service.login(params.loginRequest);
-      // TODO SAVE TOKEN TO LOCAL
       return Right(response.data);
     } on Exception catch (error) {
       return Left(error);
@@ -36,6 +39,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       LogoutRequest logoutRequest) async {
     try {
       final response = await service.logout(logoutRequest);
+      return Right(response.data);
+    } on Exception catch (error) {
+      return Left(error);
+    }
+  }
+
+  @override
+  Future<Either<Exception, BaseResponse<dynamic>>> register(
+      RegisterRequest registerRequest) async {
+    try {
+      final response = await service.register(registerRequest);
       return Right(response.data);
     } on Exception catch (error) {
       return Left(error);

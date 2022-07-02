@@ -8,6 +8,7 @@ import 'package:app_demo_flutter/l10n/l10n.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/product_cubit/get_product_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:app_demo_flutter/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => di.sl<LogoutCubit>(),
+      ),
+      BlocProvider(
+        create: (_) => di.sl<RegisterCubit>(),
       ),
       BlocProvider(
         create: (_) => di.sl<GetProductCubit>(),

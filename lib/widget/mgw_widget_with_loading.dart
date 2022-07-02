@@ -5,8 +5,7 @@ import 'package:styled_widget/styled_widget.dart';
 class MgwOSWidgetWithLoading extends StatefulWidget {
   final Size? size;
 
-  const MgwOSWidgetWithLoading({Key? key, this.size})
-      : super(key: key);
+  const MgwOSWidgetWithLoading({Key? key, this.size}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

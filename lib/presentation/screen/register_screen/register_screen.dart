@@ -2,10 +2,13 @@ import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/dialog_utils.dart';
+import 'package:app_demo_flutter/data/model/base_response/base_response.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
+import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_state.dart';
 import 'package:app_demo_flutter/widget/base/base_state.dart';
 import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
@@ -155,21 +158,21 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
   }
 
   Widget _buildButtonLogin() {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<RegisterCubit, RegisterState>(
       listener: (context, state) {
-        // _isLoading.value = false;
+        loadingOverlay.hide();
         state.maybeWhen(
             orElse: () {},
             loading: () {
-              // _isLoading.value = true;
+              loadingOverlay.show(context);
             },
             error: (err) {
-              if (err is UnauthorizedException || err is BadRequestException) {
+              if (err is BadRequestException) {
                 showMgwOSDialog(context, const Key(''), (dialogContext) {
                   return MgwOSPopup(
                       title: AppLocalizations.of(context)!.lbl_error_title,
                       subTitle:
-                          AppLocalizations.of(context)!.lbl_error_wrong_account,
+                          AppLocalizations.of(context)!.lbl_duplicate_account,
                       buttons: [
                         MgwOSAppButton(
                             style: AppButtonStyle.fill,
@@ -191,15 +194,41 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
       child: MgwOSBaseButton(
         width: double.infinity,
         colorBackground: darkBlue,
-        onPressed: () {
-          // BlocProvider.of<LoginCubit>(context).login(
-          //     _usernameController.text.trim(), _passwordController.text.trim());
-        },
+        onPressed: _onRegisterButton,
         cornerRadius: 12.r,
         text: AppLocalizations.of(context)!.lbl_btn_register,
         titleStyle:
             ThemeProvider.instance.textStyleBold18.copyWith(color: neonBlue),
       ),
     );
+  }
+
+  void _onRegisterButton() {
+    if (_checkValidate()) {
+      BlocProvider.of<RegisterCubit>(context).register(
+          _usernameController.text.trim(),
+          _emailController.text.trim(),
+          _passwordController.text.trim());
+    } else {
+      showMgwOSDialog(context, const Key(''), (dialogContext) {
+        return MgwOSPopup(
+            title: AppLocalizations.of(context)!.lbl_notes,
+            subTitle: AppLocalizations.of(context)!.lbl_must_fill_all,
+            buttons: [
+              MgwOSAppButton(
+                  style: AppButtonStyle.fill,
+                  title: AppLocalizations.of(context)!.lbl_agree_button,
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                  })
+            ]);
+      });
+    }
+  }
+
+  bool _checkValidate() {
+    return _usernameController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty;
   }
 }

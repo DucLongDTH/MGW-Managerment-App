@@ -5,8 +5,10 @@ import 'package:app_demo_flutter/data/service/auth_service.dart';
 import 'package:app_demo_flutter/domain/repositories/auth_repositories.dart';
 import 'package:app_demo_flutter/domain/usecases/login_usecase/login_usecase.dart';
 import 'package:app_demo_flutter/domain/usecases/logout_usecase/logout_usecase.dart';
+import 'package:app_demo_flutter/domain/usecases/register_usecase/logout_usecase.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
+import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 void registerDI() {
@@ -29,9 +31,12 @@ void registerDI() {
   // // UseCases
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl.get()));
   sl.registerLazySingleton(() => LogoutUseCase(authRepository: sl.get()));
+  sl.registerLazySingleton(() => RegisterUseCase(authRepository: sl.get()));
 
   // // bloc
   sl.registerFactory(
       () => LoginCubit(loginUseCase: sl.get(), appSharedPreferences: sl.get()));
-  sl.registerFactory(() => LogoutCubit(logoutUseCase: sl.get(), appSharedPreferences: sl.get()));
+  sl.registerFactory(() =>
+      LogoutCubit(logoutUseCase: sl.get(), appSharedPreferences: sl.get()));
+  sl.registerFactory(() => RegisterCubit(registerUseCase: sl.get()));
 }
