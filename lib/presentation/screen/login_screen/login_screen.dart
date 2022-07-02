@@ -92,7 +92,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Sign in \nto continue!',
+            Text(AppLocalizations.of(context)!.lbl_sign_in,
                 style: ThemeProvider.instance.textStyleBold26
                     .copyWith(color: black, height: 1.2)),
             SizedBox(height: 20.h),
@@ -106,7 +106,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
               onTap: () {},
               child: Align(
                 alignment: Alignment.topRight,
-                child: Text('Forgot Password?',
+                child: Text(AppLocalizations.of(context)!.lbl_register,
                     style: ThemeProvider.instance.textStyleBold14
                         .copyWith(color: cyan)),
               ),
@@ -122,7 +122,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   Widget _buildTextFieldUserName() {
     return MgwOSTextField(
       inputFieldKey: const Key('txtUserName'),
-      title: 'UserName',
+      title: AppLocalizations.of(context)!.lbl_email,
       keyboardType: TextInputType.emailAddress,
       controller: _usernameController,
       widgetLeft: SvgPicture.asset(
@@ -141,7 +141,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         (BuildContext context, void Function(void Function()) setState) {
       return MgwOSTextField(
         inputFieldKey: const Key('txtPassword'),
-        title: 'Password',
+        title: AppLocalizations.of(context)!.lbl_password,
         keyboardType: TextInputType.text,
         controller: _passwordController,
         obscureText: _isHidePassword,
@@ -156,7 +156,6 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             setState(() {
               _isHidePassword = !_isHidePassword;
             });
-            debugPrint('onTap show password');
           },
           child: SvgPicture.asset(
             _isHidePassword ? Assets.icons.icVisible : Assets.icons.icHidden,
@@ -188,7 +187,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
                   return MgwOSPopup(
                       title: AppLocalizations.of(context)!.lbl_error_title,
                       subTitle:
-                          'Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại',
+                          AppLocalizations.of(context)!.lbl_error_wrong_account,
                       buttons: [
                         MgwOSAppButton(
                             style: AppButtonStyle.fill,
@@ -211,10 +210,8 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         width: double.infinity,
         colorBackground: darkBlue,
         onPressed: () {
-          // TODO CALL API LOGIN
           BlocProvider.of<LoginCubit>(context).login(
               _usernameController.text.trim(), _passwordController.text.trim());
-          // AutoRouter.of(context).replaceNamed(RoutePaths.home);
         },
         cornerRadius: 12.r,
         text: 'Log in',

@@ -16,5 +16,10 @@
     "lbl_search_hint": "Tìm kiếm ...",
     "lbl_title_product":"Sản phẩm",
     "lbl_title_dashboard":"Trang chủ",
-    "lbl_title_bill":"Hóa đơn"
+    "lbl_title_bill":"Hóa đơn",
+    "lbl_sign_in": "Đăng nhập \nđể tiếp tục!",
+    "lbl_register": "Đăng kí tài khoản",
+    "lbl_email": "Email",
+    "lbl_password":"Mật khẩu",
+    "lbl_error_wrong_account":"Email/mật khẩu không chính xác, bạn vui lòng kiểm tra lại"
 }

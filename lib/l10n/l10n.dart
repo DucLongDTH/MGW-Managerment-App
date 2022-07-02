@@ -24,7 +24,7 @@ class L10n {
         return '🇻🇳';
       case 'en':
       default:
-        return '🇺🇸';
+        return '🇻🇳';
     }
   }
 }

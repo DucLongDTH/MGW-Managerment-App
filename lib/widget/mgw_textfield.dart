@@ -57,19 +57,14 @@ class MgwOSTextField extends StatelessWidget {
       decoration: BoxDecoration(
           color: greyBackground, borderRadius: BorderRadius.circular(8.r)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildWidgetLeft(),
           SizedBox(
             width: (widgetLeft != null) ? 16.h : 0,
           ),
           Expanded(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  _buildTextForm(),
-                ]),
+            child: _buildTextForm(),
           ),
           SizedBox(
             width: (widgetRight != null) ? 16.h : 0,
@@ -82,30 +77,31 @@ class MgwOSTextField extends StatelessWidget {
 
   Widget _buildTextForm() {
     return Container(
-      height: heightTextField ?? 60.h,
+      height: heightTextField ?? 65.h,
       padding: EdgeInsets.symmetric(vertical: 13.h),
-      child: TextFormField(
-        key: inputFieldKey,
-        controller: controller,
-        readOnly: readOnly,
-        enabled: enabled,
-        obscureText: obscureText,
-        obscuringCharacter: "•",
-        maxLines: 1,
-        decoration: InputDecoration(
-            hintText: title,
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(bottom: contentPadding ?? 0.h),
-            hintStyle: ThemeProvider.instance.textStyleBold14
-                .copyWith(color: greyIcon)),
-        style: ThemeProvider.instance.textStyleBold14
-            .copyWith(color: Colors.black),
-        keyboardType: keyboardType,
-        onSaved: onSaved,
-        onTap: onTap,
-        focusNode: focusNode,
-        onChanged: onChange,
-        inputFormatters: inputFormatters,
+      child: Center(
+        child: TextFormField(
+          key: inputFieldKey,
+          controller: controller,
+          readOnly: readOnly,
+          enabled: enabled,
+          obscureText: obscureText,
+          obscuringCharacter: "•",
+          maxLines: 1,
+          decoration: InputDecoration(
+              hintText: title,
+              border: InputBorder.none,
+              hintStyle: ThemeProvider.instance.textStyleBold14
+                  .copyWith(color: greyIcon)),
+          style: ThemeProvider.instance.textStyleBold14
+              .copyWith(color: Colors.black),
+          keyboardType: keyboardType,
+          onSaved: onSaved,
+          onTap: onTap,
+          focusNode: focusNode,
+          onChanged: onChange,
+          inputFormatters: inputFormatters,
+        ),
       ),
     );
   }
