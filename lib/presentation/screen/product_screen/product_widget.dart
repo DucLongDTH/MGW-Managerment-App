@@ -21,7 +21,8 @@ class ProductPageWidget extends StatefulWidget {
   State<ProductPageWidget> createState() => _ProductPageWidgetState();
 }
 
-class _ProductPageWidgetState extends State<ProductPageWidget> {
+class _ProductPageWidgetState extends State<ProductPageWidget>
+    with AutomaticKeepAliveClientMixin {
   late GetProductCubit _getProductCubit;
   final scrollController = ScrollController();
   int listCount = 0;
@@ -46,6 +47,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: white,
@@ -137,4 +139,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
           itemCount: listCount + 1),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
