@@ -2,11 +2,10 @@ import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/dialog_utils.dart';
-import 'package:app_demo_flutter/data/model/base_response/base_response.dart';
+import 'package:app_demo_flutter/constant/validator_utils.dart';
+import 'package:app_demo_flutter/constant/widget_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
-import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
-import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_state.dart';
 import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:app_demo_flutter/presentation/cubit/register_cubit/register_state.dart';
 import 'package:app_demo_flutter/widget/base/base_state.dart';
@@ -30,16 +29,32 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends BaseState<RegisterScreen> {
   bool _isHidePassword = true;
+  bool _isHidePasswordAgain = true;
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
+  late TextEditingController _passwordAgainController;
   late TextEditingController _emailController;
+  String errorUsernameMess = '';
+  String errorEmailMess = '';
+  String errorPasswordMess = '';
+  String errorPasswordAgainMess = '';
 
   @override
   void initState() {
     super.initState();
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
+    _passwordAgainController = TextEditingController();
     _emailController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _usernameController.dispose();
+    _passwordAgainController.dispose();
+    _emailController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,7 +77,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
               SizedBox(height: 50.h),
               _buildCardLogin(),
               const Spacer(),
-              _buildButtonLogin(),
+              _buildButtonLogin(context),
               SizedBox(height: 50.h),
             ],
           ),
@@ -76,21 +91,26 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildTextFieldEmail(),
-        SizedBox(
-          height: 15.h,
-        ),
         _buildTextFieldUserName(),
         SizedBox(
-          height: 15.h,
+          height: 8.h,
+        ),
+        _buildTextFieldEmail(),
+        SizedBox(
+          height: 8.h,
         ),
         _buildTextFieldPassword(),
+        SizedBox(
+          height: 8.h,
+        ),
+        _buildTextFieldPasswordAgain()
       ],
     );
   }
 
   Widget _buildTextFieldEmail() {
     return MgwOSTextField(
+      errorWidget: buildErrorForm(errorEmailMess),
       inputFieldKey: const Key('txtEmail'),
       title: AppLocalizations.of(context)!.lbl_email,
       keyboardType: TextInputType.emailAddress,
@@ -106,6 +126,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
 
   Widget _buildTextFieldUserName() {
     return MgwOSTextField(
+      errorWidget: buildErrorForm(errorUsernameMess),
       inputFieldKey: const Key('txtUserName'),
       title: AppLocalizations.of(context)!.lbl_username,
       keyboardType: TextInputType.text,
@@ -122,42 +143,74 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
   }
 
   Widget _buildTextFieldPassword() {
-    return StatefulBuilder(builder:
-        (BuildContext context, void Function(void Function()) setState) {
-      return MgwOSTextField(
-        inputFieldKey: const Key('txtPassword'),
-        title: AppLocalizations.of(context)!.lbl_password,
-        keyboardType: TextInputType.text,
-        controller: _passwordController,
-        obscureText: _isHidePassword,
-        widgetLeft: SvgPicture.asset(
-          Assets.icons.icPassword,
+    return MgwOSTextField(
+      errorWidget: buildErrorForm(errorPasswordMess),
+      inputFieldKey: const Key('txtPassword'),
+      title: AppLocalizations.of(context)!.lbl_password,
+      keyboardType: TextInputType.text,
+      controller: _passwordController,
+      obscureText: _isHidePassword,
+      widgetLeft: SvgPicture.asset(
+        Assets.icons.icPassword,
+        width: 21.w,
+        height: 21.h,
+        color: greyIcon,
+      ),
+      widgetRight: GestureDetector(
+        onTap: () {
+          setState(() {
+            _isHidePassword = !_isHidePassword;
+          });
+        },
+        child: SvgPicture.asset(
+          _isHidePassword ? Assets.icons.icVisible : Assets.icons.icHidden,
           width: 21.w,
           height: 21.h,
           color: greyIcon,
         ),
-        widgetRight: GestureDetector(
-          onTap: () {
-            setState(() {
-              _isHidePassword = !_isHidePassword;
-            });
-          },
-          child: SvgPicture.asset(
-            _isHidePassword ? Assets.icons.icVisible : Assets.icons.icHidden,
-            width: 21.w,
-            height: 21.h,
-            color: greyIcon,
-          ),
-        ),
-        onChange: (value) {
-          debugPrint('onChange $value');
-        },
-        onSaved: (value) {},
-      );
-    });
+      ),
+      onChange: (value) {
+        debugPrint('onChange $value');
+      },
+      onSaved: (value) {},
+    );
   }
 
-  Widget _buildButtonLogin() {
+  Widget _buildTextFieldPasswordAgain() {
+    return MgwOSTextField(
+      errorWidget: buildErrorForm(errorPasswordAgainMess),
+      inputFieldKey: const Key('txtPasswordAgain'),
+      title: AppLocalizations.of(context)!.lbl_password_again,
+      keyboardType: TextInputType.text,
+      controller: _passwordAgainController,
+      obscureText: _isHidePasswordAgain,
+      widgetLeft: SvgPicture.asset(
+        Assets.icons.icPassword,
+        width: 21.w,
+        height: 21.h,
+        color: greyIcon,
+      ),
+      widgetRight: GestureDetector(
+        onTap: () {
+          setState(() {
+            _isHidePasswordAgain = !_isHidePasswordAgain;
+          });
+        },
+        child: SvgPicture.asset(
+          _isHidePasswordAgain ? Assets.icons.icVisible : Assets.icons.icHidden,
+          width: 21.w,
+          height: 21.h,
+          color: greyIcon,
+        ),
+      ),
+      onChange: (value) {
+        debugPrint('onChange $value');
+      },
+      onSaved: (value) {},
+    );
+  }
+
+  Widget _buildButtonLogin(BuildContext context) {
     return BlocListener<RegisterCubit, RegisterState>(
       listener: (context, state) {
         loadingOverlay.hide();
@@ -203,32 +256,70 @@ class _RegisterScreenState extends BaseState<RegisterScreen> {
     );
   }
 
-  void _onRegisterButton() {
-    if (_checkValidate()) {
+  _onRegisterButton() {
+    if (_checkValidate(context)) {
       BlocProvider.of<RegisterCubit>(context).register(
           _usernameController.text.trim(),
           _emailController.text.trim(),
           _passwordController.text.trim());
-    } else {
-      showMgwOSDialog(context, const Key(''), (dialogContext) {
-        return MgwOSPopup(
-            title: AppLocalizations.of(context)!.lbl_notes,
-            subTitle: AppLocalizations.of(context)!.lbl_must_fill_all,
-            buttons: [
-              MgwOSAppButton(
-                  style: AppButtonStyle.fill,
-                  title: AppLocalizations.of(context)!.lbl_agree_button,
-                  onPressed: () {
-                    Navigator.of(dialogContext).pop();
-                  })
-            ]);
-      });
     }
   }
 
-  bool _checkValidate() {
-    return _usernameController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty &&
-        _emailController.text.isNotEmpty;
+  bool _checkValidate(BuildContext context) {
+    bool isValid = true;
+    formatErrorMessage();
+    if (_emailController.text.isEmpty ||
+        !_emailController.text.isValidEmail() ||
+        _emailController.text.length > 50) {
+      isValid = false;
+      errorEmailMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    if (_passwordController.text.isEmpty ||
+        !_passwordController.text.isValidPassword()) {
+      isValid = false;
+      errorPasswordMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    if (_passwordAgainController.text.isEmpty ||
+        !_passwordAgainController.text.isValidEmail()) {
+      isValid = false;
+      errorPasswordAgainMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    if (_passwordAgainController.text != _passwordController.text) {
+      isValid = false;
+      errorPasswordAgainMess =
+          AppLocalizations.of(context)!.lbl_password_not_mactch;
+    }
+    if (_usernameController.text.isEmpty) {
+      isValid = false;
+      errorUsernameMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    if (isValid == false) {
+      _showPopupError(context);
+    }
+    setState(() {});
+    return isValid;
+  }
+
+  _showPopupError(BuildContext context) {
+    showMgwOSDialog(context, const Key(''), (dialogContext) {
+      return MgwOSPopup(
+          title: AppLocalizations.of(context)!.lbl_notes,
+          subTitle: AppLocalizations.of(context)!.lbl_must_fill_all,
+          buttons: [
+            MgwOSAppButton(
+                style: AppButtonStyle.fill,
+                title: AppLocalizations.of(context)!.lbl_agree_button,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                })
+          ]);
+    });
+  }
+
+  void formatErrorMessage() {
+    errorUsernameMess = '';
+    errorEmailMess = '';
+    errorPasswordMess = '';
+    errorPasswordAgainMess = '';
   }
 }

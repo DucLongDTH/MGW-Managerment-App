@@ -2,6 +2,8 @@ import 'package:app_demo_flutter/config/dio_config/dio_error_intercaptors.dart';
 import 'package:app_demo_flutter/config/theme_config/theme.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:app_demo_flutter/constant/dialog_utils.dart';
+import 'package:app_demo_flutter/constant/validator_utils.dart';
+import 'package:app_demo_flutter/constant/widget_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
 import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/login_cubit/login_cubit.dart';
@@ -28,6 +30,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends BaseState<LoginScreen> {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
+  String errorUsernameMess = '';
+  String errorPasswordMess = '';
   var _isHidePassword = true;
 
   @override
@@ -39,6 +43,13 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   }
 
   @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget buildLayout(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -47,16 +58,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           child: SafeArea(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 50.h),
-                  Image.asset(Assets.images.logo.path,
-                      width: 60.w, height: 60.h),
-                  SizedBox(height: 50.h),
-                  _buildCardLogin()
-                ],
-              ),
+              child: Center(child: _buildCardLogin()),
             ),
           ),
         ));
@@ -82,9 +84,10 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppLocalizations.of(context)!.lbl_sign_in,
-                style: ThemeProvider.instance.textStyleBold26
-                    .copyWith(color: black, height: 1.2)),
+            Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(Assets.images.logo.path,
+                    width: 60.w, height: 60.h)),
             SizedBox(height: 20.h),
             _buildTextFieldUserName(),
             SizedBox(
@@ -113,6 +116,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
 
   Widget _buildTextFieldUserName() {
     return MgwOSTextField(
+      errorWidget: buildErrorForm(errorUsernameMess),
       inputFieldKey: const Key('txtUserName'),
       title: AppLocalizations.of(context)!.lbl_email,
       keyboardType: TextInputType.emailAddress,
@@ -132,6 +136,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
     return StatefulBuilder(builder:
         (BuildContext context, void Function(void Function()) setState) {
       return MgwOSTextField(
+        errorWidget: buildErrorForm(errorPasswordMess),
         inputFieldKey: const Key('txtPassword'),
         title: AppLocalizations.of(context)!.lbl_password,
         keyboardType: TextInputType.text,
@@ -202,8 +207,15 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         width: double.infinity,
         colorBackground: darkBlue,
         onPressed: () {
-          BlocProvider.of<LoginCubit>(context).login(
-              _usernameController.text.trim(), _passwordController.text.trim());
+          setState(() {
+            if (_checkValidate(context)) {
+              BlocProvider.of<LoginCubit>(context).login(
+                  _usernameController.text.trim(),
+                  _passwordController.text.trim());
+            } else {
+              _showPopupError(context);
+            }
+          });
         },
         cornerRadius: 12.r,
         text: AppLocalizations.of(context)!.lbl_btn_login,
@@ -211,5 +223,35 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             ThemeProvider.instance.textStyleBold18.copyWith(color: neonBlue),
       ),
     );
+  }
+
+  bool _checkValidate(BuildContext context) {
+    bool isValid = true;
+    if (_passwordController.text.isEmpty ||
+        !_passwordController.text.isValidPassword()) {
+      isValid = false;
+      errorPasswordMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    if (_usernameController.text.isEmpty) {
+      isValid = false;
+      errorUsernameMess = AppLocalizations.of(context)!.lbl_wrong_format;
+    }
+    return isValid;
+  }
+
+  _showPopupError(BuildContext context) {
+    showMgwOSDialog(context, const Key(''), (dialogContext) {
+      return MgwOSPopup(
+          title: AppLocalizations.of(context)!.lbl_notes,
+          subTitle: AppLocalizations.of(context)!.lbl_must_fill_all,
+          buttons: [
+            MgwOSAppButton(
+                style: AppButtonStyle.fill,
+                title: AppLocalizations.of(context)!.lbl_agree_button,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                })
+          ]);
+    });
   }
 }

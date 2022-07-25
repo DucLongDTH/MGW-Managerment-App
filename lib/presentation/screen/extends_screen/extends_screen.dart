@@ -1,10 +1,14 @@
 import 'package:app_demo_flutter/constant/avatar_utils.dart';
 import 'package:app_demo_flutter/constant/colors_utils.dart';
+import 'package:app_demo_flutter/constant/dialog_utils.dart';
 import 'package:app_demo_flutter/gen/assets.gen.dart';
+import 'package:app_demo_flutter/l10n/gen/app_localizations.dart';
 import 'package:app_demo_flutter/presentation/cubit/logout_cubit/logout_cubit.dart';
 import 'package:app_demo_flutter/router/router.dart';
 import 'package:app_demo_flutter/widget/base/base_state.dart';
+import 'package:app_demo_flutter/widget/mgw_app_button.dart';
 import 'package:app_demo_flutter/widget/mgw_appbar.dart';
+import 'package:app_demo_flutter/widget/mgw_popup.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,12 +44,8 @@ class _ExtendsScreenState extends BaseState<ExtendsScreen> {
               child: getAvatarByName('Nguyen Duc Long'),
             ),
             widgetRight: GestureDetector(
-                onTap: (() async {
-                  loadingOverlay.show(context);
-                  await _logoutCubit.logout().then((value) {
-                    AutoRouter.of(context).replaceNamed(RoutePaths.login);
-                  });
-                  loadingOverlay.hide();
+                onTap: (() {
+                  _showPopupLogout(context);
                 }),
                 child: SvgPicture.asset(
                   Assets.icons.icSignOut,
@@ -57,5 +57,33 @@ class _ExtendsScreenState extends BaseState<ExtendsScreen> {
             backgroundColor: darkBlue,
             elevation: 0),
         body: Container());
+  }
+
+  _showPopupLogout(BuildContext context) {
+    showMgwOSDialog(context, const Key(''), (dialogContext) {
+      return MgwOSPopup(
+          title: AppLocalizations.of(context)!.lbl_notes,
+          subTitle: AppLocalizations.of(context)!.lbl_logout_mesage,
+          buttons: [
+            MgwOSAppButton(
+                style: AppButtonStyle.fill,
+                borderColor: darkBlue,
+                title: AppLocalizations.of(context)!.lbl_keep_login,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                }),
+            MgwOSAppButton(
+                style: AppButtonStyle.border,
+                backgroundColor: white,
+                title: AppLocalizations.of(context)!.lbl_agree_button,
+                onPressed: () async {
+                  loadingOverlay.show(context);
+                  await _logoutCubit.logout().then((value) {
+                    AutoRouter.of(context).replaceNamed(RoutePaths.login);
+                  });
+                  loadingOverlay.hide();
+                }),
+          ]);
+    });
   }
 }

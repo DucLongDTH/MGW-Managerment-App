@@ -3,6 +3,8 @@ import 'package:app_demo_flutter/constant/colors_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:styled_widget/styled_widget.dart';
+import 'package:app_demo_flutter/constant/validator_utils.dart';
 
 class MgwOSTextField extends StatelessWidget {
   final Key? inputFieldKey;
@@ -52,26 +54,32 @@ class MgwOSTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      decoration: BoxDecoration(
-          color: greyBackground, borderRadius: BorderRadius.circular(8.r)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildWidgetLeft(),
-          SizedBox(
-            width: (widgetLeft != null) ? 16.h : 0,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          decoration: BoxDecoration(
+              color: greyBackground, borderRadius: BorderRadius.circular(8.r)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildWidgetLeft(),
+              SizedBox(
+                width: (widgetLeft != null) ? 16.h : 0,
+              ),
+              Expanded(
+                child: _buildTextForm(),
+              ),
+              SizedBox(
+                width: (widgetRight != null) ? 16.h : 0,
+              ),
+              widgetRight != null ? _buildWidgetRight() : const SizedBox()
+            ],
           ),
-          Expanded(
-            child: _buildTextForm(),
-          ),
-          SizedBox(
-            width: (widgetRight != null) ? 16.h : 0,
-          ),
-          widgetRight != null ? _buildWidgetRight() : const SizedBox()
-        ],
-      ),
+        ),
+        errorWidget.padding(horizontal: 16.w)
+      ],
     );
   }
 
