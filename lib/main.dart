@@ -3,6 +3,7 @@ import 'package:app_demo_flutter/di/app_di.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initDI();
   runApp(const MyApp());
 }
