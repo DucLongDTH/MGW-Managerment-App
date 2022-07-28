@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:app_demo_flutter/config/base_config/base_usecase.dart';
 import 'package:app_demo_flutter/data/model/base_response/base_response.dart';
-import 'package:app_demo_flutter/data/model/logout_request/logout_request.dart';
 import 'package:app_demo_flutter/data/model/register_request/register_request.dart';
 import 'package:app_demo_flutter/domain/repositories/auth_repositories.dart';
 import 'package:dartz/dartz.dart';
