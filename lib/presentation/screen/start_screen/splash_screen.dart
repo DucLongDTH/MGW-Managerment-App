@@ -30,30 +30,37 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 130.h,
-                width: double.infinity,
-              ),
-              Image.asset(
-                Assets.images.logo.path,
-                width: 90.w,
-                height: 90.h,
-              ),
-              SizedBox(
-                height: 130.h,
-                width: double.infinity,
-              ),
-              Text(
-                companyName,
-                style: ThemeProvider.instance.textStyleBold24
-                    .copyWith(color: darkBlue),
-              ),
-            ]),
+        child: Center(
+          child: Image.asset(
+            Assets.images.logo.path,
+            width: 120.w,
+            height: 120.h,
+          ),
+        ),
+        // child: Column(
+        //     mainAxisSize: MainAxisSize.min,
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //     children: [
+        //       SizedBox(
+        //         height: 130.h,
+        //         width: double.infinity,
+        //       ),
+        //       Image.asset(
+        //         Assets.images.logo.path,
+        //         width: 90.w,
+        //         height: 90.h,
+        //       ),
+        //       SizedBox(
+        //         height: 130.h,
+        //         width: double.infinity,
+        //       ),
+        //       Text(
+        //         companyName,
+        //         style: ThemeProvider.instance.textStyleBold24
+        //             .copyWith(color: darkBlue),
+        //       ),
+        //     ]),
       ),
     );
   }

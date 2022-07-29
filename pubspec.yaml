@@ -78,6 +78,7 @@ dependencies:
   universal_platform: ^1.0.0+1
   shared_preferences: ^2.0.15
   firebase_core: ^1.20.0
+  google_fonts: ^3.0.1
   
 dev_dependencies:
   flutter_test:
@@ -131,43 +132,5 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the assets and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
-          weight: 700
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/roboto/Roboto-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/roboto/Roboto-Bold.ttf
-          weight: 700
-    - family: Josefin
-      fonts:
-        - asset: assets/fonts/josefin/JosefinSans-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/josefin/JosefinSans-Bold.ttf
-          weight: 700
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/inter/Inter-Black.ttf
-          weight: 900
-        - asset: assets/fonts/inter/Inter-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/inter/Inter-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/inter/Inter-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/inter/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/inter/Inter-Regular.ttf
-        - asset: assets/fonts/inter/Inter-Light.ttf
-          weight: 300
-        - asset: assets/fonts/inter/Inter-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/inter/Inter-Thin.ttf
-          weight: 100
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

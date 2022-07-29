@@ -3,9 +3,10 @@ import 'package:app_demo_flutter/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ThemeProvider {
-  static const defaultFontFamily = FontFamily.inter;
+  static final defaultFontFamily = GoogleFonts.inter();
 
   ThemeProvider._privateConstructor();
 
@@ -44,10 +45,7 @@ class ThemeProvider {
   ThemeData _buildAppTheme() {
     _portraitModeOnly();
     final baseTheme = ThemeData.light();
-    const baseTextStyle = TextStyle(
-        fontFamily: defaultFontFamily,
-        color: Colors.black,
-        fontWeight: FontWeight.w500);
+    final baseTextStyle = defaultFontFamily;
     _initTextStyle(baseTextStyle);
     _primaryColor = darkBlue;
     _secondaryColor = neonBlue;

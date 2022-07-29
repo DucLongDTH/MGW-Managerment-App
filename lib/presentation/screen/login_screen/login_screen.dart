@@ -53,12 +53,24 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   Widget buildLayout(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: white,
         body: WillPopScope(
           onWillPop: (() => Future.value(false)),
           child: SafeArea(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Center(child: _buildCardLogin()),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50.h),
+                    Image.asset(Assets.images.logo.path,
+                        width: 100.w, height: 100.h),
+                    SizedBox(height: 25.h),
+                    _buildCardLogin()
+                  ],
+                ),
+              ),
             ),
           ),
         ));
@@ -71,10 +83,10 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         borderRadius: BorderRadius.all(Radius.circular(12.r)),
         boxShadow: const [
           BoxShadow(
-            color: greyShadow,
-            spreadRadius: 3,
-            blurRadius: 2,
-            offset: Offset(0, 1), // changes position of shadow
+            color: Colors.black26,
+            spreadRadius: 0,
+            blurRadius: 20,
+            offset: Offset(0, 4), // changes position of shadow
           ),
         ],
       ),
@@ -84,10 +96,10 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(Assets.images.logo.path,
-                    width: 60.w, height: 60.h)),
+            // Align(
+            //     alignment: Alignment.topCenter,
+            //     child: Image.asset(Assets.images.logo.path,
+            //         width: 60.w, height: 60.h)),
             SizedBox(height: 20.h),
             _buildTextFieldUserName(),
             SizedBox(
@@ -95,16 +107,21 @@ class _LoginScreenState extends BaseState<LoginScreen> {
             ),
             _buildTextFieldPassword(),
             SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {
-                AutoRouter.of(context).pushNamed(RoutePaths.register);
-              },
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Text(AppLocalizations.of(context)!.lbl_register,
-                    style: ThemeProvider.instance.textStyleBold14
-                        .copyWith(color: cyan)),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap: () {
+                  AutoRouter.of(context).pushNamed(RoutePaths.register);
+                },
+                child:
+                    // Align(
+                    //   alignment: Alignment.topRight,
+                    //   child:
+                    Text(AppLocalizations.of(context)!.lbl_register,
+                        style: ThemeProvider.instance.textStyleBold14
+                            .copyWith(color: cyan)),
               ),
+              // ),
             ),
             SizedBox(height: 25.h),
             _buildButtonLogin()
@@ -220,7 +237,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
         cornerRadius: 12.r,
         text: AppLocalizations.of(context)!.lbl_btn_login,
         titleStyle:
-            ThemeProvider.instance.textStyleBold18.copyWith(color: neonBlue),
+            ThemeProvider.instance.textStyleBold16.copyWith(color: neonBlue),
       ),
     );
   }
